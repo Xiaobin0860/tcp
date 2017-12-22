@@ -1,0 +1,2 @@
+%{"connection": {:git, "https://github.com/Xiaobin0860/connection.git", "606396d583b2b676438d533f586ca95835cda584", []},
+  "ranch": {:git, "https://github.com/Xiaobin0860/ranch.git", "f7934bfaecb8351553a3e12bbaba7180b927a0e8", []}}
