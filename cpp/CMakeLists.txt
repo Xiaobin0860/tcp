@@ -26,6 +26,7 @@ SET(CMAKE_C_FLAGS_DEBUG "/MTd /Zi /Od /EHsc /DEBUG")
 
 # include dirs
 include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Base
     ${CMAKE_CURRENT_SOURCE_DIR}/Demo
     C:/boost_1_64_0
@@ -49,6 +50,7 @@ else()
 
 # include dirs
 include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Base
     ${CMAKE_CURRENT_SOURCE_DIR}/Demo
     /usr/local/include

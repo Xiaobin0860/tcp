@@ -40,8 +40,11 @@ message Person {
   }
 
   repeated PhoneNumber phones = 4;
+  repeated uint64 test_uint64 = 5;
+  repeated float test_float = 6;
+  repeated double test_double = 7;
 
-  google.protobuf.Timestamp last_updated = 5;
+  google.protobuf.Timestamp last_updated = 8;
 }
 
 // Our address book file is just one of these.

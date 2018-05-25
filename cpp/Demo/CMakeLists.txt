@@ -40,3 +40,22 @@ target_link_libraries(TcpClient
 endif()
 source_group("" FILES "TcpClient.cpp")
 #-----------------------------------------------------------------------
+
+#---------------------------- TestLua --------------------------------
+set(TestLua_files
+    ./TestLua.cpp
+    ./addressbook.pb.cc
+    ./addressbook.pb.h
+    ./timestamp.pb.cc
+    ./timestamp.pb.h
+)
+add_executable(TestLua ${TestLua_files})
+
+target_link_libraries(TestLua
+    lua
+    libprotobuf
+    gtest
+)
+
+source_group("" FILES ${TestLua_files})
+#-----------------------------------------------------------------------
