@@ -11,8 +11,8 @@ TEST(PB, pb)
     ASSERT_TRUE(ab.people_size() == 0);
     auto p = ab.add_people();
     ASSERT_TRUE(p->name() == "");
-    p->set_name(u8"ÀîÀ×");
-    ASSERT_TRUE(p->name() == u8"ÀîÀ×");
+    p->set_name("xiaoming");
+    ASSERT_TRUE(p->name() == "xiaoming");
     ASSERT_TRUE(p->id() == 0);
     p->set_id(1);
     ASSERT_TRUE(p->id() == 1);
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
     tutorial::AddressBook ab;
     auto p = ab.add_people();
-    p->set_name(u8"ÀîÀ×");
+    p->set_name("xiaohong");
     p->set_id(1);
     p->set_email("lilei@gmail.com");
     auto phone = p->add_phones();

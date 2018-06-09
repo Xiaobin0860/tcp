@@ -29,6 +29,7 @@
 #ifdef _ALLBSD_SOURCE
 #include <machine/endian.h>
 #elif WIN32
+#elif __APPLE__
 #else
 #include <endian.h>
 #endif

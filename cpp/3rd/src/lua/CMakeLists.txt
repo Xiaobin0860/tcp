@@ -1,6 +1,6 @@
 project(lua)
 
-file(GLOB SRCS "./*.c")
+file(GLOB SRCS "./*.cpp")
 file(GLOB INCS "./*.h")
 
 include_directories(

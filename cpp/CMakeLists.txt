@@ -71,6 +71,7 @@ add_definitions(
     -std=c++11
     -DDEBUG
     -D_DEBUG
+    -DHAVE_PTHREAD
 )
 
 endif()

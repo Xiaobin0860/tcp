@@ -161,7 +161,11 @@
 
 #else
 
-#define LUA_API		extern
+#ifdef __cplusplus
+#define LUA_API		extern "C"
+#else
+#define LUA_API        extern
+#endif
 
 #endif
 
@@ -188,7 +192,11 @@
 #define LUAI_DATA	LUAI_FUNC
 
 #else
-#define LUAI_FUNC	extern
+#ifdef __cplusplus
+#define LUAI_FUNC        extern "C"
+#else
+#define LUAI_FUNC        extern
+#endif
 #define LUAI_DATA	extern
 #endif
 
