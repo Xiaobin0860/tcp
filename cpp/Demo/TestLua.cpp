@@ -1,4 +1,5 @@
 #include "lua.hpp"
+#include <zlib.h>
 #include <limits>
 #include <iostream>
 #include "gtest/gtest.h"
@@ -52,8 +53,75 @@ TEST(PB, pb)
     std::cout << "ab2: " << ab2.DebugString() << std::endl;
 }
 
+void unzip()
+{
+    FILE* fin = fopen("cepl_zip", "rb");
+    if (!fin) return;
+    fseek(fin, 0, SEEK_END);
+    int zip_len = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    unsigned char* zip_buf = (unsigned char*)malloc(zip_len);
+    fread(zip_buf, 1, zip_len, fin);
+    fclose(fin);
+    
+    unsigned char buf[306] = {0};
+    unsigned long len = 306;
+    int zip_result = uncompress(buf, &len, zip_buf, zip_len);
+    if (zip_result != Z_OK)
+    {
+        std::cerr << "uncompress error: " << zip_result << std::endl;
+    }
+    else
+    {
+        auto fout = fopen("cepl_unzip", "wb");
+        if (fout)
+        {
+            fwrite(buf, 1, len, fout);
+            fclose(fout);
+            std::cout << "cepl_unzip len=" << len << std::endl;
+        }
+    }
+    free(zip_buf);
+}
+int dec_xs()
+{
+    unzip();
+    
+    FILE* fin = fopen("a", "rb");
+    if (!fin) return 1;
+    int result = 1;
+    FILE* fout = nullptr;
+    do {
+        fseek(fin, 6, SEEK_SET);
+        int len = 0;
+        int size = fread(&len, 4, 1, fin);
+        if (size != 1) break;
+        len -= 0x0C;
+        std::cout << "content len=" << len << std::endl;
+        if (len <= 0) break;
+        fseek(fin, 8, SEEK_CUR);
+        fout = fopen("b", "wb");
+        if (!fout) break;
+        for(int i=0;i<len;++i)
+        {
+            if(i<=0xFF)
+            {
+                fseek(fin, 1, SEEK_CUR);
+            }
+            fputc(fgetc(fin), fout);
+        }
+        
+        result = 0;
+    } while (0);
+    fclose(fin);
+    if (fout) fclose(fout);
+    return result;
+}
+
 int main(int argc, char* argv[])
 {
+    return dec_xs();
+    
     ::testing::InitGoogleTest(&argc, argv);
 
     int ret = RUN_ALL_TESTS();

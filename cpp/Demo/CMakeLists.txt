@@ -51,11 +51,24 @@ set(TestLua_files
 )
 add_executable(TestLua ${TestLua_files})
 
+if(WIN32)
+
 target_link_libraries(TestLua
     lua
     libprotobuf
     gtest
 )
+
+else()
+
+target_link_libraries(TestLua
+    lua
+    libprotobuf
+    gtest
+    z
+)
+
+endif()
 
 source_group("" FILES ${TestLua_files})
 #-----------------------------------------------------------------------
