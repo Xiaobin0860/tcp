@@ -26,10 +26,9 @@
 #include <lualib.h>
 #include <lauxlib.h>
 
-#ifdef _ALLBSD_SOURCE
+#if defined(_ALLBSD_SOURCE) || defined(__APPLE__)
 #include <machine/endian.h>
-#elif WIN32
-#elif __APPLE__
+#elif defined _WIN32
 #else
 #include <endian.h>
 #endif
@@ -212,7 +211,7 @@ static size_t size_varint(const char* buffer, size_t len)
     size_t pos = 0;
     while(buffer[pos] & 0x80){
         ++pos;
-        if(pos > len){
+        if(pos >= len){
             return -1;
         }
     }
@@ -439,7 +438,7 @@ static int iostring_clear(lua_State* L)
     return 0;
 }
 
-static const struct luaL_reg _pb [] = {
+static const struct luaL_Reg _pb [] = {
     {"varint_encoder", varint_encoder},
     {"signed_varint_encoder", signed_varint_encoder},
     {"read_tag", read_tag},
@@ -455,7 +454,25 @@ static const struct luaL_reg _pb [] = {
     {NULL, NULL}
 };
 
-static const struct luaL_reg _c_iostring_m [] = {
+#if !defined LUA_VERSION_NUM || LUA_VERSION_NUM==501
+/*
+** Adapted from Lua 5.2.0
+*/
+static void luaL_setfuncs (lua_State *L, const luaL_Reg *l, int nup) {
+  luaL_checkstack(L, nup+1, "too many upvalues");
+  for (; l->name != NULL; l++) {  /* fill the table with given functions */
+    int i;
+    lua_pushstring(L, l->name);
+    for (i = 0; i < nup; i++)  /* copy upvalues to the top */
+      lua_pushvalue(L, -(nup+1));
+    lua_pushcclosure(L, l->func, nup);  /* closure with those upvalues */
+    lua_settable(L, -(nup + 3));
+  }
+  lua_pop(L, nup);  /* remove upvalues */
+}
+#endif
+
+static const struct luaL_Reg _c_iostring_m [] = {
     {"__tostring", iostring_str},
     {"__len", iostring_len},
     {"write", iostring_write},
@@ -464,13 +481,17 @@ static const struct luaL_reg _c_iostring_m [] = {
     {NULL, NULL}
 };
 
-LUA_API int luaopen_pb(lua_State *L)
+extern "C" int luaopen_protobuf_pb (lua_State *L)
 {
     luaL_newmetatable(L, IOSTRING_META);
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
-    luaL_register(L, NULL, _c_iostring_m);
+    luaL_setfuncs(L, _c_iostring_m, 0);
 
-    luaL_register(L, "pb", _pb);
+    lua_newtable(L);
+    luaL_setfuncs(L, _pb, 0);
+    lua_pushvalue(L, -1);
+    lua_setglobal(L, "protobuf.pb");
+
     return 1;
-} 
+}

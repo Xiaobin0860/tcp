@@ -48,6 +48,9 @@ set(TestLua_files
     ./addressbook.pb.h
     ./timestamp.pb.cc
     ./timestamp.pb.h
+    ./demo_types.cpp
+    ./demo_types.h
+
 )
 add_executable(TestLua ${TestLua_files})
 
@@ -58,6 +61,8 @@ target_link_libraries(TestLua
     libprotobuf
     gtest
     zlibstatic
+    upb
+    thrift
 )
 
 else()
@@ -67,6 +72,8 @@ target_link_libraries(TestLua
     libprotobuf
     gtest
     z
+    upb
+    thrift
 )
 
 endif()

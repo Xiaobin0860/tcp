@@ -1,0 +1,1 @@
+assert(io.write(require 'pb.io'.read()))

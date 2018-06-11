@@ -39,7 +39,7 @@ link_directories(
 )
 add_definitions(
     /D _CRT_SECURE_NO_WARNINGS
-    #/D _WIN32_WINDOWS
+    /D _WIN32_WINDOWS
     /D _WINSOCK_DEPRECATED_NO_WARNINGS
     #/D WIN32_LEAN_AND_MEAN
     /D DEBUG

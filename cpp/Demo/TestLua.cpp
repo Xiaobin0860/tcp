@@ -4,6 +4,12 @@
 #include <iostream>
 #include "gtest/gtest.h"
 #include "addressbook.pb.h"
+#include "demo_types.h"
+#include "thrift/transport/TBufferTransports.h"
+#include "thrift/protocol/TBinaryProtocol.h"
+
+using MemBuf = apache::thrift::transport::TMemoryBuffer;
+using BinProto = apache::thrift::protocol::TBinaryProtocol;
 
 
 TEST(PB, pb)
@@ -51,6 +57,50 @@ TEST(PB, pb)
     ab2.ParseFromString(s);
     std::cout << "ab: " << ab.DebugString() << std::endl;
     std::cout << "ab2: " << ab2.DebugString() << std::endl;
+}
+
+
+TEST(THRIFT, thrift)
+{
+    std::vector<Demo::Work> works;
+    for (int i = 0; i < 4; ++i)
+    {
+        Demo::Work work;
+        work.key = std::to_string(i);
+        work.comment = "comment" + work.key;
+        work.type = Demo::Type::MULTIPLY;
+        work.num1 = INT_MAX;
+        work.num2 = UINT_MAX+1;
+        works.push_back(work);
+    }
+    Demo::Worker worker;
+    worker.__set_works(works);
+    worker.result = 3.1415926;
+
+    Demo::Work work;
+    work.key = "key";
+    work.comment = "comment" + work.key;
+    work.type = Demo::Type::DIVIDE;
+    work.num1 = INT_MAX;
+    work.num2 = UINT_MAX + 1;
+    worker.work_map[work.key] = work;
+    auto mt = std::make_shared<MemBuf>(4);
+    BinProto bp(mt);
+    worker.write(&bp);
+    std::ostringstream os;
+    os << worker;
+    std::cout << "worker: " << os.str() << std::endl;
+    auto s = mt->getBufferAsString();
+    std::cout << "worker string size: " << s.size() << std::endl;
+    {
+        auto mt = std::make_shared<MemBuf>((uint8_t*)s.c_str(), s.size());
+        BinProto bp(mt);
+        Demo::Worker worker;
+        worker.read(&bp);
+        std::ostringstream os;
+        os << worker;
+        std::cout << "worker: " << os.str() << std::endl;
+    }
 }
 
 void unzip()
@@ -118,13 +168,28 @@ int dec_xs()
     return result;
 }
 
+//extern "C" int luaopen_pb(lua_State *L);
+//extern "C" int luaopen_pb_io(lua_State *L);
+//extern "C" int luaopen_pb_conv(lua_State *L);
+//extern "C" int luaopen_pb_buffer(lua_State *L);
+//extern "C" int luaopen_pb_slice(lua_State *L);
+extern "C" int luaopen_protobuf_pb(lua_State *L);
+void init_lua_pb(lua_State *L)
+{
+    //luaopen_pb(L);
+    //luaopen_pb_io(L);
+    //luaopen_pb_conv(L);
+    //luaopen_pb_buffer(L);
+    //luaopen_pb_slice(L);
+}
+extern "C" int luaopen_upb_c(lua_State *L);
 int main(int argc, char* argv[])
 {
-    return dec_xs();
+    //return dec_xs();
     
     ::testing::InitGoogleTest(&argc, argv);
 
-    int ret = RUN_ALL_TESTS();
+    int ret = 0;// RUN_ALL_TESTS();
 
 
     tutorial::AddressBook ab;
@@ -160,12 +225,14 @@ int main(int argc, char* argv[])
 
     auto L = lua_open();
     luaL_openlibs(L);
-    luaopen_pb(L);
+    //init_lua_pb(L);
+    //luaopen_upb_c(L);
+    luaopen_protobuf_pb(L);
     lua_pushlstring(L, s.c_str(), s.size());
     lua_setglobal(L, "g_s");
     lua_pushstring(L, "hello c++!");
     lua_setglobal(L, "g_hello");
-    luaL_dofile(L, "test.lua");
+    luaL_dofile(L, "test2.lua");
     lua_close(L);
 
 #if WIN32

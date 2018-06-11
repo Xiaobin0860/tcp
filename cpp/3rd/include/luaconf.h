@@ -135,7 +135,11 @@
 #define LUA_API		__declspec(dllimport)
 #endif
 #else
+#ifdef __cplusplus
 #define LUA_API		extern "C"
+#else
+#define LUA_API
+#endif
 #endif
 
 #define LUALIB_API	LUA_API
