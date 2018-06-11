@@ -57,6 +57,7 @@ target_link_libraries(TestLua
     lua
     libprotobuf
     gtest
+    zlibstatic
 )
 
 else()
