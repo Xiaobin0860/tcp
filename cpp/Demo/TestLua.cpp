@@ -9,7 +9,7 @@
 #include "thrift/transport/TBufferTransports.h"
 #include "thrift/protocol/TBinaryProtocol.h"
 #include "../Base/GeneralClient.h"
-#include "LuaIntf/LuaIntf.h"
+//#include "LuaIntf/LuaIntf.h"
 #include "google/protobuf/descriptor.pb.h"
 //#include "LuaBridge/LuaBridge.h"
 

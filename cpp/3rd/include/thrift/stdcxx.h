@@ -28,10 +28,10 @@
 //
 ///////////////////////////////////////////////////////////////////
 
-#if defined(BOOST_NO_CXX11_HDR_FUNCTIONAL) || (defined(_MSC_VER) && _MSC_VER < 1800) || defined(FORCE_BOOST_FUNCTIONAL)
-#include <boost/tr1/functional.hpp>
-#define _THRIFT_FUNCTIONAL_TR1_ 1
-#endif
+//#if defined(BOOST_NO_CXX11_HDR_FUNCTIONAL) || (defined(_MSC_VER) && _MSC_VER < 1800) || defined(FORCE_BOOST_FUNCTIONAL)
+//#include <boost/tr1/functional.hpp>
+//#define _THRIFT_FUNCTIONAL_TR1_ 1
+//#endif
 
 #if _THRIFT_FUNCTIONAL_TR1_
 

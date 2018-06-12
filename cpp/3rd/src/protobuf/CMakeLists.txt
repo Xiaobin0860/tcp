@@ -88,6 +88,13 @@ include_directories(
     ../../include
 )
 
+if(WIN32)
+else()
+add_definitions(
+    --std=c++11
+)
+endif()
+
 #add_library(libprotobuf-lite STATIC ${libprotobuf_lite_files})
 #source_group("" FILES ${libprotobuf_lite_files})
 

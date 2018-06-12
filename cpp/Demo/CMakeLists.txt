@@ -12,6 +12,10 @@ target_link_libraries(TcpServer
 
 else()
 
+add_definitions(
+    --std=c++11
+)
+
 target_link_libraries(TcpServer
     Base
     boost_system
@@ -35,6 +39,10 @@ else()
 target_link_libraries(TcpClient
     Base
     boost_system
+)
+
+add_definitions(
+    --std=c++11
 )
 
 endif()
@@ -62,22 +70,25 @@ target_link_libraries(TestLua
     zlibstatic
     upb
     thrift
-    LuaIntf
     pbc
     luapb
 )
 
 else()
 
+add_definitions(
+    --std=c++11
+)
+
 target_link_libraries(TestLua
     Base
+    boost_system
     lua
     libprotobuf
     gtest
     z
     upb
     thrift
-    LuaIntf
     pbc
     luapb
 )

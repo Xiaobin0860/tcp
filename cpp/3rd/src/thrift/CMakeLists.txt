@@ -45,6 +45,9 @@ add_library(thrift STATIC
     ${WIN_INCS}
 )
 else()
+add_definitions(
+    --std=c++11
+)
 add_library(thrift STATIC
     ${THRIFT_SRCS}
     ${THRIFT_INCS}
