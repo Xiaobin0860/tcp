@@ -46,8 +46,6 @@ set(TestLua_files
     ./TestLua.cpp
     ./addressbook.pb.cc
     ./addressbook.pb.h
-    ./timestamp.pb.cc
-    ./timestamp.pb.h
     ./demo_types.cpp
     ./demo_types.h
 
@@ -66,6 +64,7 @@ target_link_libraries(TestLua
     thrift
     LuaIntf
     pbc
+    luapb
 )
 
 else()
@@ -80,6 +79,7 @@ target_link_libraries(TestLua
     thrift
     LuaIntf
     pbc
+    luapb
 )
 
 endif()

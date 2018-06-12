@@ -2,6 +2,7 @@
 #include <zlib.h>
 #include <limits>
 #include <iostream>
+#include <fstream>
 #include "gtest/gtest.h"
 #include "addressbook.pb.h"
 #include "demo_types.h"
@@ -9,6 +10,7 @@
 #include "thrift/protocol/TBinaryProtocol.h"
 #include "../Base/GeneralClient.h"
 #include "LuaIntf/LuaIntf.h"
+#include "google/protobuf/descriptor.pb.h"
 //#include "LuaBridge/LuaBridge.h"
 
 using MemBuf = apache::thrift::transport::TMemoryBuffer;
@@ -248,6 +250,7 @@ int dec_xs()
 //}
 //extern int luaopen_upb_c(lua_State *L);
 extern "C" int luaopen_protobuf_c(lua_State *L);
+extern "C" int luaopen_luapb(lua_State* L);
 int main(int argc, char* argv[])
 {
     //return dec_xs();
@@ -307,15 +310,23 @@ int main(int argc, char* argv[])
 
     //luaopen_protobuf_pb(L);
     luaopen_protobuf_c(L);
+    luaopen_luapb(L);
     lua_pushlstring(L, s.c_str(), s.size());
     lua_setglobal(L, "g_s");
     lua_pushstring(L, "hello c++!");
     lua_setglobal(L, "g_hello");
     luaL_dofile(L, "test_pbc.lua");
+    luaL_dofile(L, "test_luapb.lua");
     //luaL_dofile(L, "test_socket.lua");
     //luaL_dofile(L, "test2.lua");
     lua_close(L);
     //std::cout << "ok s size=" << s.size() << std::endl;
+
+    //google::protobuf::FileDescriptorSet fds;
+    //std::ifstream f("addressbook.pb", std::ios_base::binary| std::ios_base::in);
+    //fds.ParseFromIstream(&f);
+    //std::cout << "fds: " << fds.DebugString() << std::endl;
+
 #if WIN32
     getchar();
 #endif
