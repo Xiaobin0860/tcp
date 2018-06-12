@@ -88,8 +88,8 @@ include_directories(
     ../../include
 )
 
-add_library(libprotobuf-lite STATIC ${libprotobuf_lite_files})
-source_group("" FILES ${libprotobuf_lite_files})
+#add_library(libprotobuf-lite STATIC ${libprotobuf_lite_files})
+#source_group("" FILES ${libprotobuf_lite_files})
 
 add_library(libprotobuf STATIC ${libprotobuf_lite_files} ${libprotobuf_files})
 source_group("" FILES ${libprotobuf_lite_files} ${libprotobuf_files})

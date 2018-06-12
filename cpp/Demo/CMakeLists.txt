@@ -57,23 +57,29 @@ add_executable(TestLua ${TestLua_files})
 if(WIN32)
 
 target_link_libraries(TestLua
+    Base
     lua
     libprotobuf
     gtest
     zlibstatic
     upb
     thrift
+    LuaIntf
+    pbc
 )
 
 else()
 
 target_link_libraries(TestLua
+    Base
     lua
     libprotobuf
     gtest
     z
     upb
     thrift
+    LuaIntf
+    pbc
 )
 
 endif()

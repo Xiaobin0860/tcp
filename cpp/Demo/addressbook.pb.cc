@@ -20,6 +20,11 @@
 #endif
 // @@protoc_insertion_point(includes)
 namespace tutorial {
+class ProfileDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Profile>
+      _instance;
+} _Profile_default_instance_;
 class Person_PhoneNumberDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Person_PhoneNumber>
@@ -30,6 +35,11 @@ class PersonDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<Person>
       _instance;
 } _Person_default_instance_;
+class ExtDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Ext>
+      _instance;
+} _Ext_default_instance_;
 class AddressBookDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<AddressBook>
@@ -37,6 +47,27 @@ class AddressBookDefaultTypeInternal {
 } _AddressBook_default_instance_;
 }  // namespace tutorial
 namespace protobuf_addressbook_2eproto {
+void InitDefaultsProfileImpl() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
+#else
+  ::google::protobuf::internal::InitProtobufDefaults();
+#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  {
+    void* ptr = &::tutorial::_Profile_default_instance_;
+    new (ptr) ::tutorial::Profile();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tutorial::Profile::InitAsDefaultInstance();
+}
+
+void InitDefaultsProfile() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsProfileImpl);
+}
+
 void InitDefaultsPerson_PhoneNumberImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -67,7 +98,7 @@ void InitDefaultsPersonImpl() {
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   protobuf_addressbook_2eproto::InitDefaultsPerson_PhoneNumber();
-  protobuf_timestamp_2eproto::InitDefaultsTimestamp();
+  protobuf_addressbook_2eproto::InitDefaultsProfile();
   {
     void* ptr = &::tutorial::_Person_default_instance_;
     new (ptr) ::tutorial::Person();
@@ -79,6 +110,27 @@ void InitDefaultsPersonImpl() {
 void InitDefaultsPerson() {
   static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
   ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsPersonImpl);
+}
+
+void InitDefaultsExtImpl() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
+#else
+  ::google::protobuf::internal::InitProtobufDefaults();
+#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  {
+    void* ptr = &::tutorial::_Ext_default_instance_;
+    new (ptr) ::tutorial::Ext();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tutorial::Ext::InitAsDefaultInstance();
+}
+
+void InitDefaultsExt() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsExtImpl);
 }
 
 void InitDefaultsAddressBookImpl() {
@@ -103,46 +155,71 @@ void InitDefaultsAddressBook() {
   ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsAddressBookImpl);
 }
 
-::google::protobuf::Metadata file_level_metadata[3];
+::google::protobuf::Metadata file_level_metadata[5];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Profile, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Profile, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Profile, nick_name_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Profile, icon_),
+  0,
+  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person_PhoneNumber, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person_PhoneNumber, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person_PhoneNumber, number_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person_PhoneNumber, type_),
-  ~0u,  // no _has_bits_
+  0,
+  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, _internal_metadata_),
-  ~0u,  // no _extensions_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, _extensions_),
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, name_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, email_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, phones_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, test_uint64_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, test_float_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, test_double_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, last_updated_),
-  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, phone_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, test_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Person, profile_),
+  0,
+  3,
+  1,
+  ~0u,
+  ~0u,
+  2,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Ext, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::Ext, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::AddressBook, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::AddressBook, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::AddressBook, people_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::AddressBook, person_),
+  ~0u,
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::tutorial::Person_PhoneNumber)},
-  { 7, -1, sizeof(::tutorial::Person)},
-  { 20, -1, sizeof(::tutorial::AddressBook)},
+  { 0, 7, sizeof(::tutorial::Profile)},
+  { 9, 16, sizeof(::tutorial::Person_PhoneNumber)},
+  { 18, 29, sizeof(::tutorial::Person)},
+  { 35, 40, sizeof(::tutorial::Ext)},
+  { 40, 46, sizeof(::tutorial::AddressBook)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&::tutorial::_Profile_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::tutorial::_Person_PhoneNumber_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::tutorial::_Person_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::tutorial::_Ext_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::tutorial::_AddressBook_default_instance_),
 };
 
@@ -162,31 +239,30 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 3);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 5);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\021addressbook.proto\022\010tutorial\032\017timestamp"
-      ".proto\"\305\002\n\006Person\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 "
-      "\001(\005\022\r\n\005email\030\003 \001(\t\022,\n\006phones\030\004 \003(\0132\034.tut"
-      "orial.Person.PhoneNumber\022\023\n\013test_uint64\030"
-      "\005 \003(\004\022\022\n\ntest_float\030\006 \003(\002\022\023\n\013test_double"
-      "\030\007 \003(\001\0220\n\014last_updated\030\010 \001(\0132\032.google.pr"
-      "otobuf.Timestamp\032G\n\013PhoneNumber\022\016\n\006numbe"
-      "r\030\001 \001(\t\022(\n\004type\030\002 \001(\0162\032.tutorial.Person."
-      "PhoneType\"+\n\tPhoneType\022\n\n\006MOBILE\020\000\022\010\n\004HO"
-      "ME\020\001\022\010\n\004WORK\020\002\"/\n\013AddressBook\022 \n\006people\030"
-      "\001 \003(\0132\020.tutorial.PersonBP\n\024com.example.t"
-      "utorialB\021AddressBookProtos\252\002$Google.Prot"
-      "obuf.Examples.AddressBookb\006proto3"
+      "\n\021addressbook.proto\022\010tutorial\"*\n\007Profile"
+      "\022\021\n\tnick_name\030\001 \001(\t\022\014\n\004icon\030\002 \001(\t\"\232\002\n\006Pe"
+      "rson\022\014\n\004name\030\001 \002(\t\022\n\n\002id\030\002 \002(\005\022\r\n\005email\030"
+      "\003 \001(\t\022+\n\005phone\030\004 \003(\0132\034.tutorial.Person.P"
+      "honeNumber\022\020\n\004test\030\005 \003(\005B\002\020\001\022\"\n\007profile\030"
+      "\006 \001(\0132\021.tutorial.Profile\032M\n\013PhoneNumber\022"
+      "\016\n\006number\030\001 \002(\t\022.\n\004type\030\002 \001(\0162\032.tutorial"
+      ".Person.PhoneType:\004HOME\"+\n\tPhoneType\022\n\n\006"
+      "MOBILE\020\000\022\010\n\004HOME\020\001\022\010\n\004WORK\020\002*\010\010\n\020\200\200\200\200\002\"%"
+      "\n\003Ext2\036\n\004test\022\020.tutorial.Person\030\n \001(\005\"/\n"
+      "\013AddressBook\022 \n\006person\030\001 \003(\0132\020.tutorial."
+      "PersonB)\n\024com.example.tutorialB\021AddressB"
+      "ookProtos"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 513);
+      descriptor, 489);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "addressbook.proto", &protobuf_RegisterTypes);
-  ::protobuf_timestamp_2eproto::AddDescriptors();
 }
 
 void AddDescriptors() {
@@ -227,6 +303,338 @@ const int Person::PhoneType_ARRAYSIZE;
 
 // ===================================================================
 
+void Profile::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Profile::kNickNameFieldNumber;
+const int Profile::kIconFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Profile::Profile()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    ::protobuf_addressbook_2eproto::InitDefaultsProfile();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tutorial.Profile)
+}
+Profile::Profile(const Profile& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  nick_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_nick_name()) {
+    nick_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nick_name_);
+  }
+  icon_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_icon()) {
+    icon_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.icon_);
+  }
+  // @@protoc_insertion_point(copy_constructor:tutorial.Profile)
+}
+
+void Profile::SharedCtor() {
+  _cached_size_ = 0;
+  nick_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  icon_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+Profile::~Profile() {
+  // @@protoc_insertion_point(destructor:tutorial.Profile)
+  SharedDtor();
+}
+
+void Profile::SharedDtor() {
+  nick_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  icon_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void Profile::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Profile::descriptor() {
+  ::protobuf_addressbook_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_addressbook_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Profile& Profile::default_instance() {
+  ::protobuf_addressbook_2eproto::InitDefaultsProfile();
+  return *internal_default_instance();
+}
+
+Profile* Profile::New(::google::protobuf::Arena* arena) const {
+  Profile* n = new Profile;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Profile::Clear() {
+// @@protoc_insertion_point(message_clear_start:tutorial.Profile)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(!nick_name_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*nick_name_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(!icon_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*icon_.UnsafeRawStringPointer())->clear();
+    }
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool Profile::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:tutorial.Profile)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string nick_name = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_nick_name()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->nick_name().data(), static_cast<int>(this->nick_name().length()),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "tutorial.Profile.nick_name");
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional string icon = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_icon()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->icon().data(), static_cast<int>(this->icon().length()),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "tutorial.Profile.icon");
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:tutorial.Profile)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:tutorial.Profile)
+  return false;
+#undef DO_
+}
+
+void Profile::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:tutorial.Profile)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional string nick_name = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->nick_name().data(), static_cast<int>(this->nick_name().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "tutorial.Profile.nick_name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->nick_name(), output);
+  }
+
+  // optional string icon = 2;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->icon().data(), static_cast<int>(this->icon().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "tutorial.Profile.icon");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->icon(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:tutorial.Profile)
+}
+
+::google::protobuf::uint8* Profile::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:tutorial.Profile)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional string nick_name = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->nick_name().data(), static_cast<int>(this->nick_name().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "tutorial.Profile.nick_name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->nick_name(), target);
+  }
+
+  // optional string icon = 2;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->icon().data(), static_cast<int>(this->icon().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "tutorial.Profile.icon");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->icon(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tutorial.Profile)
+  return target;
+}
+
+size_t Profile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tutorial.Profile)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  if (_has_bits_[0 / 32] & 3u) {
+    // optional string nick_name = 1;
+    if (has_nick_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->nick_name());
+    }
+
+    // optional string icon = 2;
+    if (has_icon()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->icon());
+    }
+
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Profile::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tutorial.Profile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Profile* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Profile>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tutorial.Profile)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tutorial.Profile)
+    MergeFrom(*source);
+  }
+}
+
+void Profile::MergeFrom(const Profile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tutorial.Profile)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      set_has_nick_name();
+      nick_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nick_name_);
+    }
+    if (cached_has_bits & 0x00000002u) {
+      set_has_icon();
+      icon_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.icon_);
+    }
+  }
+}
+
+void Profile::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tutorial.Profile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Profile::CopyFrom(const Profile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tutorial.Profile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Profile::IsInitialized() const {
+  return true;
+}
+
+void Profile::Swap(Profile* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Profile::InternalSwap(Profile* other) {
+  using std::swap;
+  nick_name_.Swap(&other->nick_name_);
+  icon_.Swap(&other->icon_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Profile::GetMetadata() const {
+  protobuf_addressbook_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_addressbook_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
 void Person_PhoneNumber::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -245,10 +653,11 @@ Person_PhoneNumber::Person_PhoneNumber()
 Person_PhoneNumber::Person_PhoneNumber(const Person_PhoneNumber& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   number_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.number().size() > 0) {
+  if (from.has_number()) {
     number_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.number_);
   }
   type_ = from.type_;
@@ -256,9 +665,9 @@ Person_PhoneNumber::Person_PhoneNumber(const Person_PhoneNumber& from)
 }
 
 void Person_PhoneNumber::SharedCtor() {
-  number_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  type_ = 0;
   _cached_size_ = 0;
+  number_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  type_ = 1;
 }
 
 Person_PhoneNumber::~Person_PhoneNumber() {
@@ -299,8 +708,15 @@ void Person_PhoneNumber::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  number_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  type_ = 0;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(!number_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*number_.UnsafeRawStringPointer())->clear();
+    }
+    type_ = 1;
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -314,23 +730,23 @@ bool Person_PhoneNumber::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string number = 1;
+      // required string number = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_number()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->number().data(), static_cast<int>(this->number().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tutorial.Person.PhoneNumber.number"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "tutorial.Person.PhoneNumber.number");
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // .tutorial.Person.PhoneType type = 2;
+      // optional .tutorial.Person.PhoneType type = 2 [default = HOME];
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
@@ -338,7 +754,12 @@ bool Person_PhoneNumber::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          set_type(static_cast< ::tutorial::Person_PhoneType >(value));
+          if (::tutorial::Person_PhoneType_IsValid(value)) {
+            set_type(static_cast< ::tutorial::Person_PhoneType >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(
+                2, static_cast< ::google::protobuf::uint64>(value));
+          }
         } else {
           goto handle_unusual;
         }
@@ -371,25 +792,26 @@ void Person_PhoneNumber::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string number = 1;
-  if (this->number().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  cached_has_bits = _has_bits_[0];
+  // required string number = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->number().data(), static_cast<int>(this->number().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.PhoneNumber.number");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->number(), output);
   }
 
-  // .tutorial.Person.PhoneType type = 2;
-  if (this->type() != 0) {
+  // optional .tutorial.Person.PhoneType type = 2 [default = HOME];
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->type(), output);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+        _internal_metadata_.unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:tutorial.Person.PhoneNumber)
 }
@@ -401,26 +823,27 @@ void Person_PhoneNumber::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string number = 1;
-  if (this->number().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  cached_has_bits = _has_bits_[0];
+  // required string number = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->number().data(), static_cast<int>(this->number().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.PhoneNumber.number");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->number(), target);
   }
 
-  // .tutorial.Person.PhoneType type = 2;
-  if (this->type() != 0) {
+  // optional .tutorial.Person.PhoneType type = 2 [default = HOME];
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->type(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tutorial.Person.PhoneNumber)
   return target;
@@ -430,20 +853,19 @@ size_t Person_PhoneNumber::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tutorial.Person.PhoneNumber)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+        _internal_metadata_.unknown_fields());
   }
-  // string number = 1;
-  if (this->number().size() > 0) {
+  // required string number = 1;
+  if (has_number()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->number());
   }
-
-  // .tutorial.Person.PhoneType type = 2;
-  if (this->type() != 0) {
+  // optional .tutorial.Person.PhoneType type = 2 [default = HOME];
+  if (has_type()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
   }
@@ -477,12 +899,16 @@ void Person_PhoneNumber::MergeFrom(const Person_PhoneNumber& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.number().size() > 0) {
-
-    number_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.number_);
-  }
-  if (from.type() != 0) {
-    set_type(from.type());
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      set_has_number();
+      number_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.number_);
+    }
+    if (cached_has_bits & 0x00000002u) {
+      type_ = from.type_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -501,6 +927,7 @@ void Person_PhoneNumber::CopyFrom(const Person_PhoneNumber& from) {
 }
 
 bool Person_PhoneNumber::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
   return true;
 }
 
@@ -512,6 +939,7 @@ void Person_PhoneNumber::InternalSwap(Person_PhoneNumber* other) {
   using std::swap;
   number_.Swap(&other->number_);
   swap(type_, other->type_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -525,24 +953,16 @@ void Person_PhoneNumber::InternalSwap(Person_PhoneNumber* other) {
 // ===================================================================
 
 void Person::InitAsDefaultInstance() {
-  ::tutorial::_Person_default_instance_._instance.get_mutable()->last_updated_ = const_cast< ::google::protobuf::Timestamp*>(
-      ::google::protobuf::Timestamp::internal_default_instance());
-}
-void Person::clear_last_updated() {
-  if (GetArenaNoVirtual() == NULL && last_updated_ != NULL) {
-    delete last_updated_;
-  }
-  last_updated_ = NULL;
+  ::tutorial::_Person_default_instance_._instance.get_mutable()->profile_ = const_cast< ::tutorial::Profile*>(
+      ::tutorial::Profile::internal_default_instance());
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Person::kNameFieldNumber;
 const int Person::kIdFieldNumber;
 const int Person::kEmailFieldNumber;
-const int Person::kPhonesFieldNumber;
-const int Person::kTestUint64FieldNumber;
-const int Person::kTestFloatFieldNumber;
-const int Person::kTestDoubleFieldNumber;
-const int Person::kLastUpdatedFieldNumber;
+const int Person::kPhoneFieldNumber;
+const int Person::kTestFieldNumber;
+const int Person::kProfileFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Person::Person()
@@ -556,36 +976,36 @@ Person::Person()
 Person::Person(const Person& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      phones_(from.phones_),
-      test_uint64_(from.test_uint64_),
-      test_float_(from.test_float_),
-      test_double_(from.test_double_),
-      _cached_size_(0) {
+      _has_bits_(from._has_bits_),
+      _cached_size_(0),
+      phone_(from.phone_),
+      test_(from.test_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _extensions_.MergeFrom(from._extensions_);
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.name().size() > 0) {
+  if (from.has_name()) {
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
   email_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.email().size() > 0) {
+  if (from.has_email()) {
     email_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.email_);
   }
-  if (from.has_last_updated()) {
-    last_updated_ = new ::google::protobuf::Timestamp(*from.last_updated_);
+  if (from.has_profile()) {
+    profile_ = new ::tutorial::Profile(*from.profile_);
   } else {
-    last_updated_ = NULL;
+    profile_ = NULL;
   }
   id_ = from.id_;
   // @@protoc_insertion_point(copy_constructor:tutorial.Person)
 }
 
 void Person::SharedCtor() {
+  _cached_size_ = 0;
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   email_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&last_updated_, 0, static_cast<size_t>(
+  ::memset(&profile_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&id_) -
-      reinterpret_cast<char*>(&last_updated_)) + sizeof(id_));
-  _cached_size_ = 0;
+      reinterpret_cast<char*>(&profile_)) + sizeof(id_));
 }
 
 Person::~Person() {
@@ -596,7 +1016,7 @@ Person::~Person() {
 void Person::SharedDtor() {
   name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   email_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete last_updated_;
+  if (this != internal_default_instance()) delete profile_;
 }
 
 void Person::SetCachedSize(int size) const {
@@ -628,17 +1048,26 @@ void Person::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  phones_.Clear();
-  test_uint64_.Clear();
-  test_float_.Clear();
-  test_double_.Clear();
-  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  email_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && last_updated_ != NULL) {
-    delete last_updated_;
+  _extensions_.Clear();
+  phone_.Clear();
+  test_.Clear();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 7u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(!name_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*name_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(!email_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*email_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(profile_ != NULL);
+      profile_->Clear();
+    }
   }
-  last_updated_ = NULL;
   id_ = 0;
+  _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -652,27 +1081,27 @@ bool Person::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string name = 1;
+      // required string name = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->name().data(), static_cast<int>(this->name().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tutorial.Person.name"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "tutorial.Person.name");
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // int32 id = 2;
+      // required int32 id = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
+          set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &id_)));
@@ -682,96 +1111,58 @@ bool Person::MergePartialFromCodedStream(
         break;
       }
 
-      // string email = 3;
+      // optional string email = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_email()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->email().data(), static_cast<int>(this->email().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tutorial.Person.email"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "tutorial.Person.email");
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated .tutorial.Person.PhoneNumber phones = 4;
+      // repeated .tutorial.Person.PhoneNumber phone = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_phones()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_phone()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated uint64 test_uint64 = 5;
+      // repeated int32 test = 5 [packed = true];
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, this->mutable_test_uint64())));
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_test())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 1, 42u, input, this->mutable_test_uint64())));
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 1, 42u, input, this->mutable_test())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated float test_float = 6;
+      // optional .tutorial.Profile profile = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, this->mutable_test_float())));
-        } else if (
-            static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(53u /* 53 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 1, 50u, input, this->mutable_test_float())));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // repeated double test_double = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, this->mutable_test_double())));
-        } else if (
-            static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(57u /* 57 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 1, 58u, input, this->mutable_test_double())));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // .google.protobuf.Timestamp last_updated = 8;
-      case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_last_updated()));
+               input, mutable_profile()));
         } else {
           goto handle_unusual;
         }
@@ -782,6 +1173,12 @@ bool Person::MergePartialFromCodedStream(
       handle_unusual:
         if (tag == 0) {
           goto success;
+        }
+        if ((80u <= tag)) {
+          DO_(_extensions_.ParseField(tag, input,
+              internal_default_instance(),
+              _internal_metadata_.mutable_unknown_fields()));
+          continue;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
               input, tag, _internal_metadata_.mutable_unknown_fields()));
@@ -804,76 +1201,63 @@ void Person::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  cached_has_bits = _has_bits_[0];
+  // required string name = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->name(), output);
   }
 
-  // int32 id = 2;
-  if (this->id() != 0) {
+  // required int32 id = 2;
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
   }
 
-  // string email = 3;
-  if (this->email().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // optional string email = 3;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->email().data(), static_cast<int>(this->email().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.email");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       3, this->email(), output);
   }
 
-  // repeated .tutorial.Person.PhoneNumber phones = 4;
+  // repeated .tutorial.Person.PhoneNumber phone = 4;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->phones_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->phone_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4, this->phones(static_cast<int>(i)), output);
+      4, this->phone(static_cast<int>(i)), output);
   }
 
-  // repeated uint64 test_uint64 = 5;
-  if (this->test_uint64_size() > 0) {
+  // repeated int32 test = 5 [packed = true];
+  if (this->test_size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteTag(5, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
-        _test_uint64_cached_byte_size_));
+        _test_cached_byte_size_));
   }
-  for (int i = 0, n = this->test_uint64_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64NoTag(
-      this->test_uint64(i), output);
-  }
-
-  // repeated float test_float = 6;
-  if (this->test_float_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(6, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
-        _test_float_cached_byte_size_));
-    ::google::protobuf::internal::WireFormatLite::WriteFloatArray(
-      this->test_float().data(), this->test_float_size(), output);
+  for (int i = 0, n = this->test_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32NoTag(
+      this->test(i), output);
   }
 
-  // repeated double test_double = 7;
-  if (this->test_double_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(7, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
-        _test_double_cached_byte_size_));
-    ::google::protobuf::internal::WireFormatLite::WriteDoubleArray(
-      this->test_double().data(), this->test_double_size(), output);
-  }
-
-  // .google.protobuf.Timestamp last_updated = 8;
-  if (this->has_last_updated()) {
+  // optional .tutorial.Profile profile = 6;
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      8, *this->last_updated_, output);
+      6, *this->profile_, output);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  // Extension range [10, 536870912)
+  _extensions_.SerializeWithCachedSizes(
+      10, 536870912, output);
+
+  if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+        _internal_metadata_.unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:tutorial.Person)
 }
@@ -885,191 +1269,162 @@ void Person::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  cached_has_bits = _has_bits_[0];
+  // required string name = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->name(), target);
   }
 
-  // int32 id = 2;
-  if (this->id() != 0) {
+  // required int32 id = 2;
+  if (cached_has_bits & 0x00000008u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
   }
 
-  // string email = 3;
-  if (this->email().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // optional string email = 3;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->email().data(), static_cast<int>(this->email().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "tutorial.Person.email");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         3, this->email(), target);
   }
 
-  // repeated .tutorial.Person.PhoneNumber phones = 4;
+  // repeated .tutorial.Person.PhoneNumber phone = 4;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->phones_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->phone_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        4, this->phones(static_cast<int>(i)), deterministic, target);
+        4, this->phone(static_cast<int>(i)), deterministic, target);
   }
 
-  // repeated uint64 test_uint64 = 5;
-  if (this->test_uint64_size() > 0) {
+  // repeated int32 test = 5 [packed = true];
+  if (this->test_size() > 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
       5,
       ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
       target);
     target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
         static_cast< ::google::protobuf::int32>(
-            _test_uint64_cached_byte_size_), target);
+            _test_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteUInt64NoTagToArray(this->test_uint64_, target);
+      WriteInt32NoTagToArray(this->test_, target);
   }
 
-  // repeated float test_float = 6;
-  if (this->test_float_size() > 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      6,
-      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
-      target);
-    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-        static_cast< ::google::protobuf::int32>(
-            _test_float_cached_byte_size_), target);
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteFloatNoTagToArray(this->test_float_, target);
-  }
-
-  // repeated double test_double = 7;
-  if (this->test_double_size() > 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      7,
-      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
-      target);
-    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-        static_cast< ::google::protobuf::int32>(
-            _test_double_cached_byte_size_), target);
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteDoubleNoTagToArray(this->test_double_, target);
-  }
-
-  // .google.protobuf.Timestamp last_updated = 8;
-  if (this->has_last_updated()) {
+  // optional .tutorial.Profile profile = 6;
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        8, *this->last_updated_, deterministic, target);
+        6, *this->profile_, deterministic, target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  // Extension range [10, 536870912)
+  target = _extensions_.InternalSerializeWithCachedSizesToArray(
+      10, 536870912, deterministic, target);
+
+  if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tutorial.Person)
   return target;
 }
 
-size_t Person::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tutorial.Person)
+size_t Person::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:tutorial.Person)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  // repeated .tutorial.Person.PhoneNumber phones = 4;
-  {
-    unsigned int count = static_cast<unsigned int>(this->phones_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->phones(static_cast<int>(i)));
-    }
-  }
-
-  // repeated uint64 test_uint64 = 5;
-  {
-    size_t data_size = ::google::protobuf::internal::WireFormatLite::
-      UInt64Size(this->test_uint64_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-            static_cast< ::google::protobuf::int32>(data_size));
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _test_uint64_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
-    total_size += data_size;
-  }
-
-  // repeated float test_float = 6;
-  {
-    unsigned int count = static_cast<unsigned int>(this->test_float_size());
-    size_t data_size = 4UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-            static_cast< ::google::protobuf::int32>(data_size));
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _test_float_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
-    total_size += data_size;
-  }
-
-  // repeated double test_double = 7;
-  {
-    unsigned int count = static_cast<unsigned int>(this->test_double_size());
-    size_t data_size = 8UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-            static_cast< ::google::protobuf::int32>(data_size));
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _test_double_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
-    total_size += data_size;
-  }
-
-  // string name = 1;
-  if (this->name().size() > 0) {
+  if (has_name()) {
+    // required string name = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->name());
   }
 
-  // string email = 3;
-  if (this->email().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->email());
-  }
-
-  // .google.protobuf.Timestamp last_updated = 8;
-  if (this->has_last_updated()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *this->last_updated_);
-  }
-
-  // int32 id = 2;
-  if (this->id() != 0) {
+  if (has_id()) {
+    // required int32 id = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->id());
   }
 
+  return total_size;
+}
+size_t Person::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tutorial.Person)
+  size_t total_size = 0;
+
+  total_size += _extensions_.ByteSize();
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  if (((_has_bits_[0] & 0x00000009) ^ 0x00000009) == 0) {  // All required fields are present.
+    // required string name = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->name());
+
+    // required int32 id = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->id());
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
+  // repeated .tutorial.Person.PhoneNumber phone = 4;
+  {
+    unsigned int count = static_cast<unsigned int>(this->phone_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->phone(static_cast<int>(i)));
+    }
+  }
+
+  // repeated int32 test = 5 [packed = true];
+  {
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      Int32Size(this->test_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _test_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
+  }
+
+  if (_has_bits_[0 / 32] & 6u) {
+    // optional string email = 3;
+    if (has_email()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->email());
+    }
+
+    // optional .tutorial.Profile profile = 6;
+    if (has_profile()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->profile_);
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -1095,27 +1450,30 @@ void Person::MergeFrom(const ::google::protobuf::Message& from) {
 void Person::MergeFrom(const Person& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:tutorial.Person)
   GOOGLE_DCHECK_NE(&from, this);
+  _extensions_.MergeFrom(from._extensions_);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  phones_.MergeFrom(from.phones_);
-  test_uint64_.MergeFrom(from.test_uint64_);
-  test_float_.MergeFrom(from.test_float_);
-  test_double_.MergeFrom(from.test_double_);
-  if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
-  if (from.email().size() > 0) {
-
-    email_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.email_);
-  }
-  if (from.has_last_updated()) {
-    mutable_last_updated()->::google::protobuf::Timestamp::MergeFrom(from.last_updated());
-  }
-  if (from.id() != 0) {
-    set_id(from.id());
+  phone_.MergeFrom(from.phone_);
+  test_.MergeFrom(from.test_);
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 15u) {
+    if (cached_has_bits & 0x00000001u) {
+      set_has_name();
+      name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+    }
+    if (cached_has_bits & 0x00000002u) {
+      set_has_email();
+      email_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.email_);
+    }
+    if (cached_has_bits & 0x00000004u) {
+      mutable_profile()->::tutorial::Profile::MergeFrom(from.profile());
+    }
+    if (cached_has_bits & 0x00000008u) {
+      id_ = from.id_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -1134,6 +1492,12 @@ void Person::CopyFrom(const Person& from) {
 }
 
 bool Person::IsInitialized() const {
+  if (!_extensions_.IsInitialized()) {
+    return false;
+  }
+
+  if ((_has_bits_[0] & 0x00000009) != 0x00000009) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->phone())) return false;
   return true;
 }
 
@@ -1143,16 +1507,16 @@ void Person::Swap(Person* other) {
 }
 void Person::InternalSwap(Person* other) {
   using std::swap;
-  phones_.InternalSwap(&other->phones_);
-  test_uint64_.InternalSwap(&other->test_uint64_);
-  test_float_.InternalSwap(&other->test_float_);
-  test_double_.InternalSwap(&other->test_double_);
+  phone_.InternalSwap(&other->phone_);
+  test_.InternalSwap(&other->test_);
   name_.Swap(&other->name_);
   email_.Swap(&other->email_);
-  swap(last_updated_, other->last_updated_);
+  swap(profile_, other->profile_);
   swap(id_, other->id_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
+  _extensions_.Swap(&other->_extensions_);
 }
 
 ::google::protobuf::Metadata Person::GetMetadata() const {
@@ -1163,10 +1527,207 @@ void Person::InternalSwap(Person* other) {
 
 // ===================================================================
 
+void Ext::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Ext::Ext()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    ::protobuf_addressbook_2eproto::InitDefaultsExt();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tutorial.Ext)
+}
+Ext::Ext(const Ext& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:tutorial.Ext)
+}
+
+void Ext::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+Ext::~Ext() {
+  // @@protoc_insertion_point(destructor:tutorial.Ext)
+  SharedDtor();
+}
+
+void Ext::SharedDtor() {
+}
+
+void Ext::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Ext::descriptor() {
+  ::protobuf_addressbook_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_addressbook_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Ext& Ext::default_instance() {
+  ::protobuf_addressbook_2eproto::InitDefaultsExt();
+  return *internal_default_instance();
+}
+
+Ext* Ext::New(::google::protobuf::Arena* arena) const {
+  Ext* n = new Ext;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Ext::Clear() {
+// @@protoc_insertion_point(message_clear_start:tutorial.Ext)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool Ext::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:tutorial.Ext)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:tutorial.Ext)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:tutorial.Ext)
+  return false;
+#undef DO_
+}
+
+void Ext::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:tutorial.Ext)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:tutorial.Ext)
+}
+
+::google::protobuf::uint8* Ext::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:tutorial.Ext)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tutorial.Ext)
+  return target;
+}
+
+size_t Ext::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tutorial.Ext)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Ext::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tutorial.Ext)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Ext* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Ext>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tutorial.Ext)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tutorial.Ext)
+    MergeFrom(*source);
+  }
+}
+
+void Ext::MergeFrom(const Ext& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tutorial.Ext)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void Ext::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tutorial.Ext)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Ext::CopyFrom(const Ext& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tutorial.Ext)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Ext::IsInitialized() const {
+  return true;
+}
+
+void Ext::Swap(Ext* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Ext::InternalSwap(Ext* other) {
+  using std::swap;
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Ext::GetMetadata() const {
+  protobuf_addressbook_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_addressbook_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
 void AddressBook::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int AddressBook::kPeopleFieldNumber;
+const int AddressBook::kPersonFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AddressBook::AddressBook()
@@ -1180,8 +1741,9 @@ AddressBook::AddressBook()
 AddressBook::AddressBook(const AddressBook& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      people_(from.people_),
-      _cached_size_(0) {
+      _has_bits_(from._has_bits_),
+      _cached_size_(0),
+      person_(from.person_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:tutorial.AddressBook)
 }
@@ -1227,7 +1789,8 @@ void AddressBook::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  people_.Clear();
+  person_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -1241,11 +1804,11 @@ bool AddressBook::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .tutorial.Person people = 1;
+      // repeated .tutorial.Person person = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_people()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_person()));
         } else {
           goto handle_unusual;
         }
@@ -1278,16 +1841,16 @@ void AddressBook::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .tutorial.Person people = 1;
+  // repeated .tutorial.Person person = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->people_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->person_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->people(static_cast<int>(i)), output);
+      1, this->person(static_cast<int>(i)), output);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+        _internal_metadata_.unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:tutorial.AddressBook)
 }
@@ -1299,17 +1862,17 @@ void AddressBook::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .tutorial.Person people = 1;
+  // repeated .tutorial.Person person = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->people_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->person_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        1, this->people(static_cast<int>(i)), deterministic, target);
+        1, this->person(static_cast<int>(i)), deterministic, target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tutorial.AddressBook)
   return target;
@@ -1319,19 +1882,19 @@ size_t AddressBook::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tutorial.AddressBook)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+  if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+        _internal_metadata_.unknown_fields());
   }
-  // repeated .tutorial.Person people = 1;
+  // repeated .tutorial.Person person = 1;
   {
-    unsigned int count = static_cast<unsigned int>(this->people_size());
+    unsigned int count = static_cast<unsigned int>(this->person_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->people(static_cast<int>(i)));
+          this->person(static_cast<int>(i)));
     }
   }
 
@@ -1364,7 +1927,7 @@ void AddressBook::MergeFrom(const AddressBook& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  people_.MergeFrom(from.people_);
+  person_.MergeFrom(from.person_);
 }
 
 void AddressBook::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1382,6 +1945,7 @@ void AddressBook::CopyFrom(const AddressBook& from) {
 }
 
 bool AddressBook::IsInitialized() const {
+  if (!::google::protobuf::internal::AllAreInitialized(this->person())) return false;
   return true;
 }
 
@@ -1391,7 +1955,8 @@ void AddressBook::Swap(AddressBook* other) {
 }
 void AddressBook::InternalSwap(AddressBook* other) {
   using std::swap;
-  people_.InternalSwap(&other->people_);
+  person_.InternalSwap(&other->person_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -1401,6 +1966,12 @@ void AddressBook::InternalSwap(AddressBook* other) {
   return ::protobuf_addressbook_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Ext::kTestFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::tutorial::Person,
+    ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::int32 >, 5, false >
+  Ext::test(kTestFieldNumber, 0);
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tutorial

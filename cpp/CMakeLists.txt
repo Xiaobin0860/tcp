@@ -68,7 +68,6 @@ link_directories(
 # compile options
 add_definitions(
     -g
-    -std=c++11
     -DDEBUG
     -D_DEBUG
     -DHAVE_PTHREAD

@@ -30,7 +30,6 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
-#include "timestamp.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_addressbook_2eproto {
@@ -38,21 +37,27 @@ namespace protobuf_addressbook_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[3];
+  static const ::google::protobuf::internal::ParseTable schema[5];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
 void AddDescriptors();
+void InitDefaultsProfileImpl();
+void InitDefaultsProfile();
 void InitDefaultsPerson_PhoneNumberImpl();
 void InitDefaultsPerson_PhoneNumber();
 void InitDefaultsPersonImpl();
 void InitDefaultsPerson();
+void InitDefaultsExtImpl();
+void InitDefaultsExt();
 void InitDefaultsAddressBookImpl();
 void InitDefaultsAddressBook();
 inline void InitDefaults() {
+  InitDefaultsProfile();
   InitDefaultsPerson_PhoneNumber();
   InitDefaultsPerson();
+  InitDefaultsExt();
   InitDefaultsAddressBook();
 }
 }  // namespace protobuf_addressbook_2eproto
@@ -60,21 +65,25 @@ namespace tutorial {
 class AddressBook;
 class AddressBookDefaultTypeInternal;
 extern AddressBookDefaultTypeInternal _AddressBook_default_instance_;
+class Ext;
+class ExtDefaultTypeInternal;
+extern ExtDefaultTypeInternal _Ext_default_instance_;
 class Person;
 class PersonDefaultTypeInternal;
 extern PersonDefaultTypeInternal _Person_default_instance_;
 class Person_PhoneNumber;
 class Person_PhoneNumberDefaultTypeInternal;
 extern Person_PhoneNumberDefaultTypeInternal _Person_PhoneNumber_default_instance_;
+class Profile;
+class ProfileDefaultTypeInternal;
+extern ProfileDefaultTypeInternal _Profile_default_instance_;
 }  // namespace tutorial
 namespace tutorial {
 
 enum Person_PhoneType {
   Person_PhoneType_MOBILE = 0,
   Person_PhoneType_HOME = 1,
-  Person_PhoneType_WORK = 2,
-  Person_PhoneType_Person_PhoneType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  Person_PhoneType_Person_PhoneType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+  Person_PhoneType_WORK = 2
 };
 bool Person_PhoneType_IsValid(int value);
 const Person_PhoneType Person_PhoneType_PhoneType_MIN = Person_PhoneType_MOBILE;
@@ -92,6 +101,142 @@ inline bool Person_PhoneType_Parse(
     Person_PhoneType_descriptor(), name, value);
 }
 // ===================================================================
+
+class Profile : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tutorial.Profile) */ {
+ public:
+  Profile();
+  virtual ~Profile();
+
+  Profile(const Profile& from);
+
+  inline Profile& operator=(const Profile& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Profile(Profile&& from) noexcept
+    : Profile() {
+    *this = ::std::move(from);
+  }
+
+  inline Profile& operator=(Profile&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Profile& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Profile* internal_default_instance() {
+    return reinterpret_cast<const Profile*>(
+               &_Profile_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(Profile* other);
+  friend void swap(Profile& a, Profile& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Profile* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Profile* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Profile& from);
+  void MergeFrom(const Profile& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Profile* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string nick_name = 1;
+  bool has_nick_name() const;
+  void clear_nick_name();
+  static const int kNickNameFieldNumber = 1;
+  const ::std::string& nick_name() const;
+  void set_nick_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_nick_name(::std::string&& value);
+  #endif
+  void set_nick_name(const char* value);
+  void set_nick_name(const char* value, size_t size);
+  ::std::string* mutable_nick_name();
+  ::std::string* release_nick_name();
+  void set_allocated_nick_name(::std::string* nick_name);
+
+  // optional string icon = 2;
+  bool has_icon() const;
+  void clear_icon();
+  static const int kIconFieldNumber = 2;
+  const ::std::string& icon() const;
+  void set_icon(const ::std::string& value);
+  #if LANG_CXX11
+  void set_icon(::std::string&& value);
+  #endif
+  void set_icon(const char* value);
+  void set_icon(const char* value, size_t size);
+  ::std::string* mutable_icon();
+  ::std::string* release_icon();
+  void set_allocated_icon(::std::string* icon);
+
+  // @@protoc_insertion_point(class_scope:tutorial.Profile)
+ private:
+  void set_has_nick_name();
+  void clear_has_nick_name();
+  void set_has_icon();
+  void clear_has_icon();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr nick_name_;
+  ::google::protobuf::internal::ArenaStringPtr icon_;
+  friend struct ::protobuf_addressbook_2eproto::TableStruct;
+  friend void ::protobuf_addressbook_2eproto::InitDefaultsProfileImpl();
+};
+// -------------------------------------------------------------------
 
 class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tutorial.Person.PhoneNumber) */ {
  public:
@@ -119,6 +264,13 @@ class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insert
     return *this;
   }
   #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
   static const ::google::protobuf::Descriptor* descriptor();
   static const Person_PhoneNumber& default_instance();
 
@@ -128,7 +280,7 @@ class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insert
                &_Person_PhoneNumber_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(Person_PhoneNumber* other);
   friend void swap(Person_PhoneNumber& a, Person_PhoneNumber& b) {
@@ -175,7 +327,8 @@ class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insert
 
   // accessors -------------------------------------------------------
 
-  // string number = 1;
+  // required string number = 1;
+  bool has_number() const;
   void clear_number();
   static const int kNumberFieldNumber = 1;
   const ::std::string& number() const;
@@ -189,7 +342,8 @@ class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insert
   ::std::string* release_number();
   void set_allocated_number(::std::string* number);
 
-  // .tutorial.Person.PhoneType type = 2;
+  // optional .tutorial.Person.PhoneType type = 2 [default = HOME];
+  bool has_type() const;
   void clear_type();
   static const int kTypeFieldNumber = 2;
   ::tutorial::Person_PhoneType type() const;
@@ -197,11 +351,16 @@ class Person_PhoneNumber : public ::google::protobuf::Message /* @@protoc_insert
 
   // @@protoc_insertion_point(class_scope:tutorial.Person.PhoneNumber)
  private:
+  void set_has_number();
+  void clear_has_number();
+  void set_has_type();
+  void clear_has_type();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr number_;
   int type_;
-  mutable int _cached_size_;
   friend struct ::protobuf_addressbook_2eproto::TableStruct;
   friend void ::protobuf_addressbook_2eproto::InitDefaultsPerson_PhoneNumberImpl();
 };
@@ -233,6 +392,13 @@ class Person : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
     return *this;
   }
   #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
   static const ::google::protobuf::Descriptor* descriptor();
   static const Person& default_instance();
 
@@ -242,7 +408,7 @@ class Person : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
                &_Person_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(Person* other);
   friend void swap(Person& a, Person& b) {
@@ -319,55 +485,32 @@ class Person : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 
   // accessors -------------------------------------------------------
 
-  // repeated .tutorial.Person.PhoneNumber phones = 4;
-  int phones_size() const;
-  void clear_phones();
-  static const int kPhonesFieldNumber = 4;
-  const ::tutorial::Person_PhoneNumber& phones(int index) const;
-  ::tutorial::Person_PhoneNumber* mutable_phones(int index);
-  ::tutorial::Person_PhoneNumber* add_phones();
+  // repeated .tutorial.Person.PhoneNumber phone = 4;
+  int phone_size() const;
+  void clear_phone();
+  static const int kPhoneFieldNumber = 4;
+  const ::tutorial::Person_PhoneNumber& phone(int index) const;
+  ::tutorial::Person_PhoneNumber* mutable_phone(int index);
+  ::tutorial::Person_PhoneNumber* add_phone();
   ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >*
-      mutable_phones();
+      mutable_phone();
   const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >&
-      phones() const;
+      phone() const;
 
-  // repeated uint64 test_uint64 = 5;
-  int test_uint64_size() const;
-  void clear_test_uint64();
-  static const int kTestUint64FieldNumber = 5;
-  ::google::protobuf::uint64 test_uint64(int index) const;
-  void set_test_uint64(int index, ::google::protobuf::uint64 value);
-  void add_test_uint64(::google::protobuf::uint64 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
-      test_uint64() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
-      mutable_test_uint64();
+  // repeated int32 test = 5 [packed = true];
+  int test_size() const;
+  void clear_test();
+  static const int kTestFieldNumber = 5;
+  ::google::protobuf::int32 test(int index) const;
+  void set_test(int index, ::google::protobuf::int32 value);
+  void add_test(::google::protobuf::int32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      test() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_test();
 
-  // repeated float test_float = 6;
-  int test_float_size() const;
-  void clear_test_float();
-  static const int kTestFloatFieldNumber = 6;
-  float test_float(int index) const;
-  void set_test_float(int index, float value);
-  void add_test_float(float value);
-  const ::google::protobuf::RepeatedField< float >&
-      test_float() const;
-  ::google::protobuf::RepeatedField< float >*
-      mutable_test_float();
-
-  // repeated double test_double = 7;
-  int test_double_size() const;
-  void clear_test_double();
-  static const int kTestDoubleFieldNumber = 7;
-  double test_double(int index) const;
-  void set_test_double(int index, double value);
-  void add_test_double(double value);
-  const ::google::protobuf::RepeatedField< double >&
-      test_double() const;
-  ::google::protobuf::RepeatedField< double >*
-      mutable_test_double();
-
-  // string name = 1;
+  // required string name = 1;
+  bool has_name() const;
   void clear_name();
   static const int kNameFieldNumber = 1;
   const ::std::string& name() const;
@@ -381,7 +524,8 @@ class Person : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
-  // string email = 3;
+  // optional string email = 3;
+  bool has_email() const;
   void clear_email();
   static const int kEmailFieldNumber = 3;
   const ::std::string& email() const;
@@ -395,39 +539,155 @@ class Person : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_email();
   void set_allocated_email(::std::string* email);
 
-  // .google.protobuf.Timestamp last_updated = 8;
-  bool has_last_updated() const;
-  void clear_last_updated();
-  static const int kLastUpdatedFieldNumber = 8;
-  const ::google::protobuf::Timestamp& last_updated() const;
-  ::google::protobuf::Timestamp* release_last_updated();
-  ::google::protobuf::Timestamp* mutable_last_updated();
-  void set_allocated_last_updated(::google::protobuf::Timestamp* last_updated);
+  // optional .tutorial.Profile profile = 6;
+  bool has_profile() const;
+  void clear_profile();
+  static const int kProfileFieldNumber = 6;
+  const ::tutorial::Profile& profile() const;
+  ::tutorial::Profile* release_profile();
+  ::tutorial::Profile* mutable_profile();
+  void set_allocated_profile(::tutorial::Profile* profile);
 
-  // int32 id = 2;
+  // required int32 id = 2;
+  bool has_id() const;
   void clear_id();
   static const int kIdFieldNumber = 2;
   ::google::protobuf::int32 id() const;
   void set_id(::google::protobuf::int32 value);
 
+  GOOGLE_PROTOBUF_EXTENSION_ACCESSORS(Person)
   // @@protoc_insertion_point(class_scope:tutorial.Person)
+ private:
+  void set_has_name();
+  void clear_has_name();
+  void set_has_id();
+  void clear_has_id();
+  void set_has_email();
+  void clear_has_email();
+  void set_has_profile();
+  void clear_has_profile();
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::ExtensionSet _extensions_;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber > phone_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > test_;
+  mutable int _test_cached_byte_size_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::internal::ArenaStringPtr email_;
+  ::tutorial::Profile* profile_;
+  ::google::protobuf::int32 id_;
+  friend struct ::protobuf_addressbook_2eproto::TableStruct;
+  friend void ::protobuf_addressbook_2eproto::InitDefaultsPersonImpl();
+};
+// -------------------------------------------------------------------
+
+class Ext : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tutorial.Ext) */ {
+ public:
+  Ext();
+  virtual ~Ext();
+
+  Ext(const Ext& from);
+
+  inline Ext& operator=(const Ext& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Ext(Ext&& from) noexcept
+    : Ext() {
+    *this = ::std::move(from);
+  }
+
+  inline Ext& operator=(Ext&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Ext& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Ext* internal_default_instance() {
+    return reinterpret_cast<const Ext*>(
+               &_Ext_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(Ext* other);
+  friend void swap(Ext& a, Ext& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Ext* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Ext* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Ext& from);
+  void MergeFrom(const Ext& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Ext* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  static const int kTestFieldNumber = 10;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::tutorial::Person,
+      ::google::protobuf::internal::PrimitiveTypeTraits< ::google::protobuf::int32 >, 5, false >
+    test;
+  // @@protoc_insertion_point(class_scope:tutorial.Ext)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber > phones_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > test_uint64_;
-  mutable int _test_uint64_cached_byte_size_;
-  ::google::protobuf::RepeatedField< float > test_float_;
-  mutable int _test_float_cached_byte_size_;
-  ::google::protobuf::RepeatedField< double > test_double_;
-  mutable int _test_double_cached_byte_size_;
-  ::google::protobuf::internal::ArenaStringPtr name_;
-  ::google::protobuf::internal::ArenaStringPtr email_;
-  ::google::protobuf::Timestamp* last_updated_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   friend struct ::protobuf_addressbook_2eproto::TableStruct;
-  friend void ::protobuf_addressbook_2eproto::InitDefaultsPersonImpl();
+  friend void ::protobuf_addressbook_2eproto::InitDefaultsExtImpl();
 };
 // -------------------------------------------------------------------
 
@@ -457,6 +717,13 @@ class AddressBook : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
   #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
   static const ::google::protobuf::Descriptor* descriptor();
   static const AddressBook& default_instance();
 
@@ -466,7 +733,7 @@ class AddressBook : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_AddressBook_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    4;
 
   void Swap(AddressBook* other);
   friend void swap(AddressBook& a, AddressBook& b) {
@@ -513,24 +780,25 @@ class AddressBook : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // accessors -------------------------------------------------------
 
-  // repeated .tutorial.Person people = 1;
-  int people_size() const;
-  void clear_people();
-  static const int kPeopleFieldNumber = 1;
-  const ::tutorial::Person& people(int index) const;
-  ::tutorial::Person* mutable_people(int index);
-  ::tutorial::Person* add_people();
+  // repeated .tutorial.Person person = 1;
+  int person_size() const;
+  void clear_person();
+  static const int kPersonFieldNumber = 1;
+  const ::tutorial::Person& person(int index) const;
+  ::tutorial::Person* mutable_person(int index);
+  ::tutorial::Person* add_person();
   ::google::protobuf::RepeatedPtrField< ::tutorial::Person >*
-      mutable_people();
+      mutable_person();
   const ::google::protobuf::RepeatedPtrField< ::tutorial::Person >&
-      people() const;
+      person() const;
 
   // @@protoc_insertion_point(class_scope:tutorial.AddressBook)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::tutorial::Person > people_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::tutorial::Person > person_;
   friend struct ::protobuf_addressbook_2eproto::TableStruct;
   friend void ::protobuf_addressbook_2eproto::InitDefaultsAddressBookImpl();
 };
@@ -543,24 +811,164 @@ class AddressBook : public ::google::protobuf::Message /* @@protoc_insertion_poi
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Profile
+
+// optional string nick_name = 1;
+inline bool Profile::has_nick_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Profile::set_has_nick_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Profile::clear_has_nick_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Profile::clear_nick_name() {
+  nick_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_nick_name();
+}
+inline const ::std::string& Profile::nick_name() const {
+  // @@protoc_insertion_point(field_get:tutorial.Profile.nick_name)
+  return nick_name_.GetNoArena();
+}
+inline void Profile::set_nick_name(const ::std::string& value) {
+  set_has_nick_name();
+  nick_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:tutorial.Profile.nick_name)
+}
+#if LANG_CXX11
+inline void Profile::set_nick_name(::std::string&& value) {
+  set_has_nick_name();
+  nick_name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tutorial.Profile.nick_name)
+}
+#endif
+inline void Profile::set_nick_name(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_nick_name();
+  nick_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tutorial.Profile.nick_name)
+}
+inline void Profile::set_nick_name(const char* value, size_t size) {
+  set_has_nick_name();
+  nick_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tutorial.Profile.nick_name)
+}
+inline ::std::string* Profile::mutable_nick_name() {
+  set_has_nick_name();
+  // @@protoc_insertion_point(field_mutable:tutorial.Profile.nick_name)
+  return nick_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Profile::release_nick_name() {
+  // @@protoc_insertion_point(field_release:tutorial.Profile.nick_name)
+  clear_has_nick_name();
+  return nick_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Profile::set_allocated_nick_name(::std::string* nick_name) {
+  if (nick_name != NULL) {
+    set_has_nick_name();
+  } else {
+    clear_has_nick_name();
+  }
+  nick_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nick_name);
+  // @@protoc_insertion_point(field_set_allocated:tutorial.Profile.nick_name)
+}
+
+// optional string icon = 2;
+inline bool Profile::has_icon() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Profile::set_has_icon() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Profile::clear_has_icon() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Profile::clear_icon() {
+  icon_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_icon();
+}
+inline const ::std::string& Profile::icon() const {
+  // @@protoc_insertion_point(field_get:tutorial.Profile.icon)
+  return icon_.GetNoArena();
+}
+inline void Profile::set_icon(const ::std::string& value) {
+  set_has_icon();
+  icon_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:tutorial.Profile.icon)
+}
+#if LANG_CXX11
+inline void Profile::set_icon(::std::string&& value) {
+  set_has_icon();
+  icon_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tutorial.Profile.icon)
+}
+#endif
+inline void Profile::set_icon(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_icon();
+  icon_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tutorial.Profile.icon)
+}
+inline void Profile::set_icon(const char* value, size_t size) {
+  set_has_icon();
+  icon_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tutorial.Profile.icon)
+}
+inline ::std::string* Profile::mutable_icon() {
+  set_has_icon();
+  // @@protoc_insertion_point(field_mutable:tutorial.Profile.icon)
+  return icon_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Profile::release_icon() {
+  // @@protoc_insertion_point(field_release:tutorial.Profile.icon)
+  clear_has_icon();
+  return icon_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Profile::set_allocated_icon(::std::string* icon) {
+  if (icon != NULL) {
+    set_has_icon();
+  } else {
+    clear_has_icon();
+  }
+  icon_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), icon);
+  // @@protoc_insertion_point(field_set_allocated:tutorial.Profile.icon)
+}
+
+// -------------------------------------------------------------------
+
 // Person_PhoneNumber
 
-// string number = 1;
+// required string number = 1;
+inline bool Person_PhoneNumber::has_number() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Person_PhoneNumber::set_has_number() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Person_PhoneNumber::clear_has_number() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 inline void Person_PhoneNumber::clear_number() {
   number_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_number();
 }
 inline const ::std::string& Person_PhoneNumber::number() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.PhoneNumber.number)
   return number_.GetNoArena();
 }
 inline void Person_PhoneNumber::set_number(const ::std::string& value) {
-  
+  set_has_number();
   number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:tutorial.Person.PhoneNumber.number)
 }
 #if LANG_CXX11
 inline void Person_PhoneNumber::set_number(::std::string&& value) {
-  
+  set_has_number();
   number_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:tutorial.Person.PhoneNumber.number)
@@ -568,46 +976,57 @@ inline void Person_PhoneNumber::set_number(::std::string&& value) {
 #endif
 inline void Person_PhoneNumber::set_number(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  
+  set_has_number();
   number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:tutorial.Person.PhoneNumber.number)
 }
 inline void Person_PhoneNumber::set_number(const char* value, size_t size) {
-  
+  set_has_number();
   number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:tutorial.Person.PhoneNumber.number)
 }
 inline ::std::string* Person_PhoneNumber::mutable_number() {
-  
+  set_has_number();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.PhoneNumber.number)
   return number_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Person_PhoneNumber::release_number() {
   // @@protoc_insertion_point(field_release:tutorial.Person.PhoneNumber.number)
-  
+  clear_has_number();
   return number_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Person_PhoneNumber::set_allocated_number(::std::string* number) {
   if (number != NULL) {
-    
+    set_has_number();
   } else {
-    
+    clear_has_number();
   }
   number_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), number);
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.PhoneNumber.number)
 }
 
-// .tutorial.Person.PhoneType type = 2;
+// optional .tutorial.Person.PhoneType type = 2 [default = HOME];
+inline bool Person_PhoneNumber::has_type() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Person_PhoneNumber::set_has_type() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Person_PhoneNumber::clear_has_type() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 inline void Person_PhoneNumber::clear_type() {
-  type_ = 0;
+  type_ = 1;
+  clear_has_type();
 }
 inline ::tutorial::Person_PhoneType Person_PhoneNumber::type() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.PhoneNumber.type)
   return static_cast< ::tutorial::Person_PhoneType >(type_);
 }
 inline void Person_PhoneNumber::set_type(::tutorial::Person_PhoneType value) {
-  
+  assert(::tutorial::Person_PhoneType_IsValid(value));
+  set_has_type();
   type_ = value;
   // @@protoc_insertion_point(field_set:tutorial.Person.PhoneNumber.type)
 }
@@ -616,22 +1035,32 @@ inline void Person_PhoneNumber::set_type(::tutorial::Person_PhoneType value) {
 
 // Person
 
-// string name = 1;
+// required string name = 1;
+inline bool Person::has_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Person::set_has_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Person::clear_has_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 inline void Person::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_name();
 }
 inline const ::std::string& Person::name() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.name)
   return name_.GetNoArena();
 }
 inline void Person::set_name(const ::std::string& value) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:tutorial.Person.name)
 }
 #if LANG_CXX11
 inline void Person::set_name(::std::string&& value) {
-  
+  set_has_name();
   name_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:tutorial.Person.name)
@@ -639,66 +1068,86 @@ inline void Person::set_name(::std::string&& value) {
 #endif
 inline void Person::set_name(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:tutorial.Person.name)
 }
 inline void Person::set_name(const char* value, size_t size) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:tutorial.Person.name)
 }
 inline ::std::string* Person::mutable_name() {
-  
+  set_has_name();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Person::release_name() {
   // @@protoc_insertion_point(field_release:tutorial.Person.name)
-  
+  clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Person::set_allocated_name(::std::string* name) {
   if (name != NULL) {
-    
+    set_has_name();
   } else {
-    
+    clear_has_name();
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.name)
 }
 
-// int32 id = 2;
+// required int32 id = 2;
+inline bool Person::has_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Person::set_has_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Person::clear_has_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
 inline void Person::clear_id() {
   id_ = 0;
+  clear_has_id();
 }
 inline ::google::protobuf::int32 Person::id() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.id)
   return id_;
 }
 inline void Person::set_id(::google::protobuf::int32 value) {
-  
+  set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:tutorial.Person.id)
 }
 
-// string email = 3;
+// optional string email = 3;
+inline bool Person::has_email() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Person::set_has_email() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Person::clear_has_email() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 inline void Person::clear_email() {
   email_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_email();
 }
 inline const ::std::string& Person::email() const {
   // @@protoc_insertion_point(field_get:tutorial.Person.email)
   return email_.GetNoArena();
 }
 inline void Person::set_email(const ::std::string& value) {
-  
+  set_has_email();
   email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:tutorial.Person.email)
 }
 #if LANG_CXX11
 inline void Person::set_email(::std::string&& value) {
-  
+  set_has_email();
   email_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:tutorial.Person.email)
@@ -706,238 +1155,195 @@ inline void Person::set_email(::std::string&& value) {
 #endif
 inline void Person::set_email(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  
+  set_has_email();
   email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:tutorial.Person.email)
 }
 inline void Person::set_email(const char* value, size_t size) {
-  
+  set_has_email();
   email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:tutorial.Person.email)
 }
 inline ::std::string* Person::mutable_email() {
-  
+  set_has_email();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.email)
   return email_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Person::release_email() {
   // @@protoc_insertion_point(field_release:tutorial.Person.email)
-  
+  clear_has_email();
   return email_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Person::set_allocated_email(::std::string* email) {
   if (email != NULL) {
-    
+    set_has_email();
   } else {
-    
+    clear_has_email();
   }
   email_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), email);
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.email)
 }
 
-// repeated .tutorial.Person.PhoneNumber phones = 4;
-inline int Person::phones_size() const {
-  return phones_.size();
+// repeated .tutorial.Person.PhoneNumber phone = 4;
+inline int Person::phone_size() const {
+  return phone_.size();
 }
-inline void Person::clear_phones() {
-  phones_.Clear();
+inline void Person::clear_phone() {
+  phone_.Clear();
 }
-inline const ::tutorial::Person_PhoneNumber& Person::phones(int index) const {
-  // @@protoc_insertion_point(field_get:tutorial.Person.phones)
-  return phones_.Get(index);
+inline const ::tutorial::Person_PhoneNumber& Person::phone(int index) const {
+  // @@protoc_insertion_point(field_get:tutorial.Person.phone)
+  return phone_.Get(index);
 }
-inline ::tutorial::Person_PhoneNumber* Person::mutable_phones(int index) {
-  // @@protoc_insertion_point(field_mutable:tutorial.Person.phones)
-  return phones_.Mutable(index);
+inline ::tutorial::Person_PhoneNumber* Person::mutable_phone(int index) {
+  // @@protoc_insertion_point(field_mutable:tutorial.Person.phone)
+  return phone_.Mutable(index);
 }
-inline ::tutorial::Person_PhoneNumber* Person::add_phones() {
-  // @@protoc_insertion_point(field_add:tutorial.Person.phones)
-  return phones_.Add();
+inline ::tutorial::Person_PhoneNumber* Person::add_phone() {
+  // @@protoc_insertion_point(field_add:tutorial.Person.phone)
+  return phone_.Add();
 }
 inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >*
-Person::mutable_phones() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.phones)
-  return &phones_;
+Person::mutable_phone() {
+  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.phone)
+  return &phone_;
 }
 inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >&
-Person::phones() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.phones)
-  return phones_;
+Person::phone() const {
+  // @@protoc_insertion_point(field_list:tutorial.Person.phone)
+  return phone_;
 }
 
-// repeated uint64 test_uint64 = 5;
-inline int Person::test_uint64_size() const {
-  return test_uint64_.size();
+// repeated int32 test = 5 [packed = true];
+inline int Person::test_size() const {
+  return test_.size();
 }
-inline void Person::clear_test_uint64() {
-  test_uint64_.Clear();
+inline void Person::clear_test() {
+  test_.Clear();
 }
-inline ::google::protobuf::uint64 Person::test_uint64(int index) const {
-  // @@protoc_insertion_point(field_get:tutorial.Person.test_uint64)
-  return test_uint64_.Get(index);
+inline ::google::protobuf::int32 Person::test(int index) const {
+  // @@protoc_insertion_point(field_get:tutorial.Person.test)
+  return test_.Get(index);
 }
-inline void Person::set_test_uint64(int index, ::google::protobuf::uint64 value) {
-  test_uint64_.Set(index, value);
-  // @@protoc_insertion_point(field_set:tutorial.Person.test_uint64)
+inline void Person::set_test(int index, ::google::protobuf::int32 value) {
+  test_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tutorial.Person.test)
 }
-inline void Person::add_test_uint64(::google::protobuf::uint64 value) {
-  test_uint64_.Add(value);
-  // @@protoc_insertion_point(field_add:tutorial.Person.test_uint64)
+inline void Person::add_test(::google::protobuf::int32 value) {
+  test_.Add(value);
+  // @@protoc_insertion_point(field_add:tutorial.Person.test)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
-Person::test_uint64() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.test_uint64)
-  return test_uint64_;
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+Person::test() const {
+  // @@protoc_insertion_point(field_list:tutorial.Person.test)
+  return test_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
-Person::mutable_test_uint64() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.test_uint64)
-  return &test_uint64_;
-}
-
-// repeated float test_float = 6;
-inline int Person::test_float_size() const {
-  return test_float_.size();
-}
-inline void Person::clear_test_float() {
-  test_float_.Clear();
-}
-inline float Person::test_float(int index) const {
-  // @@protoc_insertion_point(field_get:tutorial.Person.test_float)
-  return test_float_.Get(index);
-}
-inline void Person::set_test_float(int index, float value) {
-  test_float_.Set(index, value);
-  // @@protoc_insertion_point(field_set:tutorial.Person.test_float)
-}
-inline void Person::add_test_float(float value) {
-  test_float_.Add(value);
-  // @@protoc_insertion_point(field_add:tutorial.Person.test_float)
-}
-inline const ::google::protobuf::RepeatedField< float >&
-Person::test_float() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.test_float)
-  return test_float_;
-}
-inline ::google::protobuf::RepeatedField< float >*
-Person::mutable_test_float() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.test_float)
-  return &test_float_;
+inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+Person::mutable_test() {
+  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.test)
+  return &test_;
 }
 
-// repeated double test_double = 7;
-inline int Person::test_double_size() const {
-  return test_double_.size();
+// optional .tutorial.Profile profile = 6;
+inline bool Person::has_profile() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Person::clear_test_double() {
-  test_double_.Clear();
+inline void Person::set_has_profile() {
+  _has_bits_[0] |= 0x00000004u;
 }
-inline double Person::test_double(int index) const {
-  // @@protoc_insertion_point(field_get:tutorial.Person.test_double)
-  return test_double_.Get(index);
+inline void Person::clear_has_profile() {
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline void Person::set_test_double(int index, double value) {
-  test_double_.Set(index, value);
-  // @@protoc_insertion_point(field_set:tutorial.Person.test_double)
+inline void Person::clear_profile() {
+  if (profile_ != NULL) profile_->Clear();
+  clear_has_profile();
 }
-inline void Person::add_test_double(double value) {
-  test_double_.Add(value);
-  // @@protoc_insertion_point(field_add:tutorial.Person.test_double)
+inline const ::tutorial::Profile& Person::profile() const {
+  const ::tutorial::Profile* p = profile_;
+  // @@protoc_insertion_point(field_get:tutorial.Person.profile)
+  return p != NULL ? *p : *reinterpret_cast<const ::tutorial::Profile*>(
+      &::tutorial::_Profile_default_instance_);
 }
-inline const ::google::protobuf::RepeatedField< double >&
-Person::test_double() const {
-  // @@protoc_insertion_point(field_list:tutorial.Person.test_double)
-  return test_double_;
-}
-inline ::google::protobuf::RepeatedField< double >*
-Person::mutable_test_double() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.Person.test_double)
-  return &test_double_;
-}
-
-// .google.protobuf.Timestamp last_updated = 8;
-inline bool Person::has_last_updated() const {
-  return this != internal_default_instance() && last_updated_ != NULL;
-}
-inline const ::google::protobuf::Timestamp& Person::last_updated() const {
-  const ::google::protobuf::Timestamp* p = last_updated_;
-  // @@protoc_insertion_point(field_get:tutorial.Person.last_updated)
-  return p != NULL ? *p : *reinterpret_cast<const ::google::protobuf::Timestamp*>(
-      &::google::protobuf::_Timestamp_default_instance_);
-}
-inline ::google::protobuf::Timestamp* Person::release_last_updated() {
-  // @@protoc_insertion_point(field_release:tutorial.Person.last_updated)
-  
-  ::google::protobuf::Timestamp* temp = last_updated_;
-  last_updated_ = NULL;
+inline ::tutorial::Profile* Person::release_profile() {
+  // @@protoc_insertion_point(field_release:tutorial.Person.profile)
+  clear_has_profile();
+  ::tutorial::Profile* temp = profile_;
+  profile_ = NULL;
   return temp;
 }
-inline ::google::protobuf::Timestamp* Person::mutable_last_updated() {
-  
-  if (last_updated_ == NULL) {
-    last_updated_ = new ::google::protobuf::Timestamp;
+inline ::tutorial::Profile* Person::mutable_profile() {
+  set_has_profile();
+  if (profile_ == NULL) {
+    profile_ = new ::tutorial::Profile;
   }
-  // @@protoc_insertion_point(field_mutable:tutorial.Person.last_updated)
-  return last_updated_;
+  // @@protoc_insertion_point(field_mutable:tutorial.Person.profile)
+  return profile_;
 }
-inline void Person::set_allocated_last_updated(::google::protobuf::Timestamp* last_updated) {
+inline void Person::set_allocated_profile(::tutorial::Profile* profile) {
   ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == NULL) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(last_updated_);
+    delete profile_;
   }
-  if (last_updated) {
-    ::google::protobuf::Arena* submessage_arena =
-      reinterpret_cast< ::google::protobuf::MessageLite*>(last_updated)->GetArena();
+  if (profile) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
     if (message_arena != submessage_arena) {
-      last_updated = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, last_updated, submessage_arena);
+      profile = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, profile, submessage_arena);
     }
-    
+    set_has_profile();
   } else {
-    
+    clear_has_profile();
   }
-  last_updated_ = last_updated;
-  // @@protoc_insertion_point(field_set_allocated:tutorial.Person.last_updated)
+  profile_ = profile;
+  // @@protoc_insertion_point(field_set_allocated:tutorial.Person.profile)
 }
+
+// -------------------------------------------------------------------
+
+// Ext
 
 // -------------------------------------------------------------------
 
 // AddressBook
 
-// repeated .tutorial.Person people = 1;
-inline int AddressBook::people_size() const {
-  return people_.size();
+// repeated .tutorial.Person person = 1;
+inline int AddressBook::person_size() const {
+  return person_.size();
 }
-inline void AddressBook::clear_people() {
-  people_.Clear();
+inline void AddressBook::clear_person() {
+  person_.Clear();
 }
-inline const ::tutorial::Person& AddressBook::people(int index) const {
-  // @@protoc_insertion_point(field_get:tutorial.AddressBook.people)
-  return people_.Get(index);
+inline const ::tutorial::Person& AddressBook::person(int index) const {
+  // @@protoc_insertion_point(field_get:tutorial.AddressBook.person)
+  return person_.Get(index);
 }
-inline ::tutorial::Person* AddressBook::mutable_people(int index) {
-  // @@protoc_insertion_point(field_mutable:tutorial.AddressBook.people)
-  return people_.Mutable(index);
+inline ::tutorial::Person* AddressBook::mutable_person(int index) {
+  // @@protoc_insertion_point(field_mutable:tutorial.AddressBook.person)
+  return person_.Mutable(index);
 }
-inline ::tutorial::Person* AddressBook::add_people() {
-  // @@protoc_insertion_point(field_add:tutorial.AddressBook.people)
-  return people_.Add();
+inline ::tutorial::Person* AddressBook::add_person() {
+  // @@protoc_insertion_point(field_add:tutorial.AddressBook.person)
+  return person_.Add();
 }
 inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person >*
-AddressBook::mutable_people() {
-  // @@protoc_insertion_point(field_mutable_list:tutorial.AddressBook.people)
-  return &people_;
+AddressBook::mutable_person() {
+  // @@protoc_insertion_point(field_mutable_list:tutorial.AddressBook.person)
+  return &person_;
 }
 inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person >&
-AddressBook::people() const {
-  // @@protoc_insertion_point(field_list:tutorial.AddressBook.people)
-  return people_;
+AddressBook::person() const {
+  // @@protoc_insertion_point(field_list:tutorial.AddressBook.person)
+  return person_;
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
