@@ -117,9 +117,12 @@ static int base_open(lua_State *L) {
 /*-------------------------------------------------------------------------*\
 * Initializes all library modules.
 \*-------------------------------------------------------------------------*/
+int luaopen_libluabpack(lua_State *L);
 LUASOCKET_API int luaopen_socket_core(lua_State *L) {
     int i;
     base_open(L);
     for (i = 0; mod[i].name; i++) mod[i].func(L);
+
+    luaopen_libluabpack(L);
     return 1;
 }

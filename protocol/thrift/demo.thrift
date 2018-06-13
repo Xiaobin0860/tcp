@@ -40,3 +40,8 @@ struct Worker {
     2: double result,
     3: map<string, Work> work_map,
 }
+
+service Server {
+    void send_i(1:i32 num),
+    void send_is(1:i32 len, 2:string msg),
+}

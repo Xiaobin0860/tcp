@@ -323,6 +323,7 @@ int main(int argc, char* argv[])
     lua_setglobal(L, "g_hello");
     //luaL_dofile(L, "test_pbc.lua");
     luaL_dofile(L, "test_luapb.lua");
+    luaL_dofile(L, "talker.lua");
     //luaL_dofile(L, "test_socket.lua");
     //luaL_dofile(L, "test2.lua");
     lua_close(L);
