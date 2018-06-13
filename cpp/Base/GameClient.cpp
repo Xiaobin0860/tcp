@@ -1,5 +1,6 @@
 #include "GameClient.h"
 #include <iostream>
+#include "lauxlib.h"
 
 using namespace Base;
 

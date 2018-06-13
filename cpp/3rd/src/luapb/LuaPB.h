@@ -2,7 +2,7 @@
 #ifndef LUAPB_H_
 #define LUAPB_H_
 
-#include <lua.hpp>
+#include <lua.h>
 #include <google/protobuf/message.h>
 
 typedef struct tagluamsg

@@ -10,6 +10,8 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/compiler/importer.h>
 
+#include "lauxlib.h"
+
 using namespace google::protobuf;
 
 static int push_message(lua_State* L, Message* message, bool del)

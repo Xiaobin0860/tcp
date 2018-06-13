@@ -36,6 +36,7 @@ include_directories(
 link_directories(
     ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
     C:/boost_1_64_0/stage/lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/prebuilt/zlib/win
 )
 add_definitions(
     /D _CRT_SECURE_NO_WARNINGS
@@ -68,6 +69,7 @@ link_directories(
 # compile options
 add_definitions(
     -g
+    -std=c++11
     -DDEBUG
     -D_DEBUG
     -DHAVE_PTHREAD

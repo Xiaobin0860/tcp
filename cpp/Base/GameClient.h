@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GeneralClient.h"
-#include "lua.hpp"
+#include "lua.h"
 
 namespace Base
 {
