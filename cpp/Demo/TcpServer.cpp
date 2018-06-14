@@ -22,7 +22,7 @@ protected:
             Stop();
             return;
         }
-        std::string ret("World");
+        std::string ret(msg + " from c++ server");
         Buffer buf;
         EncodePacket((uint8_t*)ret.c_str(), ret.size(), buf);
         conn->Send(buf);
@@ -34,6 +34,10 @@ protected:
     virtual void OnDisconnect(const ConnectionPtr conn) override
     {
         std::cout << __FUNCTION__ << " id=" << conn->GetId() << std::endl;
+    }
+    virtual void OnWrite(const ConnectionPtr& conn, uint32_t size)
+    {
+        std::cout << __FUNCTION__ << " id=" << conn->GetId() << ", write size " << size << std::endl;
     }
 };
 using ServerPtr = std::shared_ptr<MyServer>;
