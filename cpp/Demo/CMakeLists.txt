@@ -44,6 +44,7 @@ source_group("" FILES "TcpClient.cpp")
 #---------------------------- TestLua --------------------------------
 set(TestLua_files
     ./TestLua.cpp
+    ./xs.cpp
     ./addressbook.pb.cc
     ./addressbook.pb.h
     ./demo_types.cpp
@@ -60,9 +61,9 @@ target_link_libraries(TestLua
     libprotobuf
     gtest
     libzlib
-    upb
+    #upb
     thrift
-    pbc
+    #pbc
     luapb
     luasocket
 )
@@ -76,9 +77,9 @@ target_link_libraries(TestLua
     libprotobuf
     gtest
     z
-    upb
+    #upb
     thrift
-    pbc
+    #pbc
     luapb
     luasocket
 )
