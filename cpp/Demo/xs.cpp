@@ -34,8 +34,7 @@ static void gen_confuse(char *confuse, int len);
 static int enc_file(const char *src_path, const char *xpk_path, const char *null_path);
 static int dec_file(const char *xpk);
 
-
-int enc_xs()
+int main(int argc, char* argv[])
 {
     init_xs();
 
@@ -101,24 +100,24 @@ static void init_xs()
         s_dec_index2[s_index2[(uint8_t)i]] = (uint8_t)i;
     }
 
-    s_enc_map.reserve(UINT_MAX);
-    for (int64_t i = 0; i <= UINT_MAX; ++i)
-    {
-        uint32_t key = static_cast<uint32_t>(i);
-        gen_key7_3((uint8_t*)&key);
-        auto it = s_enc_map.find(key);
-        if (it != s_enc_map.end())
-        {
-            if (it->second != i)
-            {
-                std::cerr << i << "=>" << key << ", already has " << it->second << "=>" << key << std::endl;
-            }
-        }
-        else
-        {
-            s_enc_map[key] = i;
-        }
-    }
+    //s_enc_map.reserve(UINT_MAX);
+    //for (int64_t i = 0; i <= UINT_MAX; ++i)
+    //{
+    //    uint32_t key = static_cast<uint32_t>(i);
+    //    gen_key7_3((uint8_t*)&key);
+    //    auto it = s_enc_map.find(key);
+    //    if (it != s_enc_map.end())
+    //    {
+    //        if (it->second != i)
+    //        {
+    //            std::cerr << i << "=>" << key << ", already has " << it->second << "=>" << key << std::endl;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        s_enc_map[key] = i;
+    //    }
+    //}
 }
 static void deinit_xs()
 {

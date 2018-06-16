@@ -256,11 +256,11 @@ int dec_xs()
 extern "C" int luaopen_luapb(lua_State* L);
 //extern "C" int luaopen_client(lua_State* L);
 
-extern int enc_xs();
+//extern int enc_xs();
 int main(int argc, char* argv[])
 {
     //return dec_xs();
-    return enc_xs();
+    //return enc_xs();
 
     ::testing::InitGoogleTest(&argc, argv);
 

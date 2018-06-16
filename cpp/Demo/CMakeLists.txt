@@ -41,10 +41,19 @@ endif()
 source_group("" FILES "TcpClient.cpp")
 #-----------------------------------------------------------------------
 
+#---------------------------- xs --------------------------------
+add_executable(xs ./xs.cpp)
+
+target_link_libraries(TcpClient
+    lua
+)
+
+source_group("" FILES "xs.cpp")
+#-----------------------------------------------------------------------
+
 #---------------------------- TestLua --------------------------------
 set(TestLua_files
     ./TestLua.cpp
-    ./xs.cpp
     ./addressbook.pb.cc
     ./addressbook.pb.h
     ./demo_types.cpp
