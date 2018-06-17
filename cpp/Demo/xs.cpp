@@ -9,10 +9,8 @@
 
 static uint8_t s_table1[256] = {0};
 static uint8_t s_dec_table1[256] = { 0 };
-static uint8_t s_table2[256] = { 0 };
 static uint8_t s_table3[256] = { 0 };
 static uint8_t s_index2[256] = { 0 };
-static uint8_t s_dec_index2[256] = { 0 };
 static uint8_t s_index4[256] = { 0 };
 static uint8_t s_index8[256] = { 0 };
 static const char* s_confuse_str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,./;\"'<>?";
@@ -43,20 +41,6 @@ int main(int argc, char* argv[])
 {
     init_xs();
 
-    //FILE* fin = fopen("k0", "rb");
-    //fseek(fin, 0, SEEK_END);
-    //int len = ftell(fin);
-    //fseek(fin, 0, SEEK_SET);
-    //uint8_t* k0 = (uint8_t*)malloc(len);
-    //fread(k0, 1, len, fin);
-    //fclose(fin);
-    //std::cout << "k0: " << (void*)k0 << std::endl;
-    //gen_key6(k0, k0 + 32, 8);
-
-    //FILE* fout = fopen("k2", "wb");
-    //fwrite(k0, 1, len, fout);
-    //fclose(fout);
-
     enc_file(0, 0, 0);
 
     dec_file("x");
@@ -80,17 +64,6 @@ static void init_xs()
     std::cout << "c" << (char)s_dec_table1[s_table1['c']] << " d" << (char)s_dec_table1[s_table1['d']]
         << " e" << (char)s_dec_table1[s_table1['e']] << " f" << (char)s_dec_table1[s_table1['f']] << std::endl;
     
-    fin = fopen("t2", "rb");
-    fseek(fin, 0, SEEK_END);
-    len = ftell(fin);
-    fseek(fin, 0, SEEK_SET);
-    fread(s_table2, 1, len, fin);
-    fclose(fin);
-	for (int i = 0; i < 256; ++i)
-	{
-		std::cout << (unsigned)s_dec_table1[i] << " " << (unsigned)s_table2[i] << std::endl;
-	}
-    
     fin = fopen("t3", "rb");
     fseek(fin, 0, SEEK_END);
     len = ftell(fin);
@@ -104,29 +77,6 @@ static void init_xs()
     fseek(fin, 0, SEEK_SET);
     fread(s_index2, 1, len, fin);
     fclose(fin);
-    for (int i = 0; i < 256; ++i)
-    {
-        s_dec_index2[s_index2[(uint8_t)i]] = (uint8_t)i;
-    }
-
-    //s_enc_map.reserve(UINT_MAX);
-    //for (int64_t i = 0; i <= UINT_MAX; ++i)
-    //{
-    //    uint32_t key = static_cast<uint32_t>(i);
-    //    gen_key7_3((uint8_t*)&key);
-    //    auto it = s_enc_map.find(key);
-    //    if (it != s_enc_map.end())
-    //    {
-    //        if (it->second != i)
-    //        {
-    //            std::cerr << i << "=>" << key << ", already has " << it->second << "=>" << key << std::endl;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        s_enc_map[key] = i;
-    //    }
-    //}
 
 	fin = fopen("i4", "rb");
 	fseek(fin, 0, SEEK_END);
@@ -325,17 +275,8 @@ static void enc_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
         gen_key7_1(key7, key6, k);
     }
 
-	//for ( k = ll - 1; k > 0; --k )
-	//{
-	//	gen_key7_1(key7, key6, k);
-	//	revert_gen_key7_3(key7);
-	//	revert_gen_key7_2(key7);
-	//}
-
     gen_key7_2(key7);
     gen_key7_1(key7, key6, ll);
-	//gen_key7_1(key7, key6, ll);
-	//revert_gen_key7_2(key7);
 
     for (i = 0; i < 16; ++i)
     {
@@ -344,35 +285,14 @@ static void enc_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 }
 static void dec_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 {
-	int v4; // eax
-	int v5; // eax
 	uint8_t key7[16] = {0}; // [esp+Ch] [ebp-20h]
-	int v7; // [esp+1Ch] [ebp-10h]
-	int j; // [esp+20h] [ebp-Ch]
 	int i; // [esp+24h] [ebp-8h]
 	int k; // [esp+28h] [ebp-4h]
 
-	v7 = 0;
-	for (i = 0; i <= 3; ++i)
+	for (i = 0; i < 16; ++i)
 	{
-		for (j = 0; j <= 3; ++j)
-		{
-			v4 = v7++;
-			key7[4 * i + j] = buff[v4];
-		}
+		key7[i] = buff[i];
 	}
-
-	//gen_key7_1(key7, key6, ll);
-	//revert_gen_key7_2(key7);
-
-	//for (k = ll - 1; k > 0; --k)
-	//{
-	//	gen_key7_1(key7, key6, k);
-	//	revert_gen_key7_3(key7);
-	//	revert_gen_key7_2(key7);
-	//}
-
-	//gen_key7_1(key7, key6, 0);
 
 	gen_key7_1(key7, key6, ll);
 	for (k = ll - 1; k > 0; --k)
@@ -384,16 +304,9 @@ static void dec_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 	revert_gen_key7_2(key7);
 	gen_key7_1(key7, key6, 0);
 
-	i = 0;
-	v7 = 0;
-	while (i <= 3)
+	for (i = 0; i < 16; ++i)
 	{
-		for (j = 0; j <= 3; ++j)
-		{
-			v5 = v7++;
-			line[v5] = key7[4 * i + j];
-		}
-		++i;
+		line[i] = key7[i];
 	}
 }
 static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
@@ -429,7 +342,6 @@ static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
         for (j = 0; j <= 15; ++j)
             buf[i + j] ^= *((uint8_t *)_key5 + j);
         enc_line(&buf[i], &buf[i], &copy_key4[32], 14);
-		//dec_line(&buf[i], &buf[i], &copy_key4[32], 14);
         _key5[0] = *(int *)&buf[i];
         _key5[1] = *(int *)&buf[i + 4];
         _key5[2] = *(int *)&buf[i + 8];
@@ -541,7 +453,7 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
 
     std::cout << "final_buf: 0x" << (void*)final_buf << std::endl;
     enc_xx(final_buf, new_len, _key4, 256, s_key5);
-	dec_xx(final_buf, new_len, _key4, 256, s_key5);
+	//dec_xx(final_buf, new_len, _key4, 256, s_key5);
 
     FILE* fout = fopen("z1", "wb");
     fwrite(final_buf, 1, new_len, fout);
@@ -573,8 +485,17 @@ static int dec_file(const char *xpk)
         fread(enc_buf + i, 1, 1, fin);
     }
     std::cout << "confuse: " << confuse << std::endl;
-
-
     fclose(fin);
+
+	//char _key4[264] = { 0 };
+	//for (int j = 0; j <= 255; j += 8)
+	//{
+	//	for (int k = 0; k <= 7 && j + k <= 255; ++k)
+	//		_key4[j + k] = _key3[k] ^ confuse[j + k];
+	//}
+
+
     free(enc_buf);
+
+	return 0;
 }
