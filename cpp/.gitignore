@@ -2,3 +2,4 @@ build
 @lib
 @bin
 3rd/prebuilt
+**/*.dll

@@ -7,6 +7,8 @@
 #include <fstream>
 #include <unordered_map>
 
+#include <zlib.h>
+
 static uint8_t s_table1[256] = {0};
 static uint8_t s_dec_table1[256] = { 0 };
 static uint8_t s_table3[256] = { 0 };
@@ -466,16 +468,20 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
 
 static int dec_file(const char *xpk)
 {
-    FILE* fin = fopen(xpk, "rb");
-    fseek(fin, 6, SEEK_SET);//sig
-    int len = 0;
-    fread(&len, 4, 1, fin);
-    len -= 0x0C;
-    std::cout << "content len=" << len << std::endl;
-    if (len <= 0) return 1;
+	FILE* fin = fopen(xpk, "rb");
+	fseek(fin, 6, SEEK_SET);//sig
+	int len = 0;
+	fread(&len, 4, 1, fin);
+	len -= 0x0C;
+	std::cout << "content len=" << len << std::endl;
+	if (len <= 0)
+	{
+		fclose(fin);
+		return 1;
+	}
     fseek(fin, 8, SEEK_CUR);
     char confuse[257] = { 0 };
-    char* enc_buf = (char*)malloc(len);
+    uint8_t* enc_buf = (uint8_t*)malloc(len);
     for (int i = 0; i < len; ++i)
     {
         if (i < 256)
@@ -484,18 +490,49 @@ static int dec_file(const char *xpk)
         }
         fread(enc_buf + i, 1, 1, fin);
     }
+	int src_len = 0;
+	fread(&src_len, 4, 1, fin);
+	std::cout << "src_len=" << src_len << std::endl;
     std::cout << "confuse: " << confuse << std::endl;
     fclose(fin);
+	if (src_len <= 0)
+	{
+		free(enc_buf);
+		return 1;
+	}
 
-	//char _key4[264] = { 0 };
-	//for (int j = 0; j <= 255; j += 8)
-	//{
-	//	for (int k = 0; k <= 7 && j + k <= 255; ++k)
-	//		_key4[j + k] = _key3[k] ^ confuse[j + k];
-	//}
+	uint8_t zip_head[8] = { 0x78, 0x9C, 0x75, 0xCF, 0xCB, 0x4A, 0xC3, 0x50 };
+	char _key3[8] = { 0 };
+	for (int i = 0; i <= 7; ++i)
+		_key3[i] = zip_head[i] ^ s_key2[i + 8 + 9];
+	char _key4[264] = { 0 };
+	for (int j = 0; j <= 255; j += 8)
+	{
+		for (int k = 0; k <= 7 && j + k <= 255; ++k)
+			_key4[j + k] = _key3[k] ^ confuse[j + k];
+	}
+	dec_xx(enc_buf, len, _key4, 256, s_key5);
 
 
-    free(enc_buf);
+	for (int j = 8; j < len; j += 8)
+	{
+		for (int k = 0; k <= 7; ++k)
+			enc_buf[j + k] ^= _key3[k];
+	}
+	for (int k = 0; k <= 7; ++k)
+		enc_buf[k] ^= zip_head[k];
+
+
+	unsigned long uzip_len = src_len;
+	uint8_t* uzip_buf = (uint8_t*)malloc(src_len);
+	int uzip_ret = uncompress(uzip_buf, &uzip_len, enc_buf, len);
+	free(enc_buf);
+	if (uzip_ret != Z_OK)
+	{
+		std::cerr << "unzip error " << uzip_ret << std::endl;
+		return 1;
+	}
+
 
 	return 0;
 }

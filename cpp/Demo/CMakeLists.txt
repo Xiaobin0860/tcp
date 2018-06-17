@@ -44,9 +44,17 @@ source_group("" FILES "TcpClient.cpp")
 #---------------------------- xs --------------------------------
 add_executable(xs ./xs.cpp)
 
-target_link_libraries(TcpClient
+if(WIN32)
+target_link_libraries(xs
     lua
+    libzlib
 )
+else()
+target_link_libraries(xs
+    lua
+	z
+)
+endif()
 
 source_group("" FILES "xs.cpp")
 #-----------------------------------------------------------------------
