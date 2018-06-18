@@ -1,5 +1,6 @@
 #include <mbstring.h>
 #include <cstdlib>
+#include <cstdio>
 #include <cstring>
 #include <ctime>
 #include <cstdint>
@@ -41,8 +42,93 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *null
 static int dec_file(const char *xpk);
 static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len);
 
+static void zlib_compress_test()
+{
+	const char* s1 = "1";
+	int len = strlen(s1);
+	auto zip_len = compressBound(len);
+	uint8_t* zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+	
+	s1 = "12";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "123";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "1234";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "12345";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "123456";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "1234567";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "12345678";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "11";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+
+	s1 = "112";
+	len = strlen(s1);
+	zip_len = compressBound(len);
+	zip_buff = (uint8_t*)malloc(zip_len);
+	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+	free(zip_buff);
+}
+
 int main(int argc, char* argv[])
 {
+	zlib_compress_test();
+
     init_xs();
 
     enc_file(0, 0, 0);
@@ -500,7 +586,8 @@ static int dec_file(const char *xpk)
 		fclose(fin);
 		return 1;
 	}
-    fseek(fin, 8, SEEK_CUR);
+	uint8_t zip_head[8] = { 0 };
+    fread(zip_head, 8, 1, fin);
     char confuse[257] = { 0 };
     uint8_t* enc_buf = (uint8_t*)malloc(len);
     for (int i = 0; i < len; ++i)
@@ -522,7 +609,6 @@ static int dec_file(const char *xpk)
 		return 1;
 	}
 
-	uint8_t zip_head[8] = { 0x78, 0x9C, 0x75, 0xCF, 0xCB, 0x4A, 0xC3, 0x50 };
 	char _key3[8] = { 0 };
 	for (int i = 0; i <= 7; ++i)
 		_key3[i] = zip_head[i] ^ s_key2[i + 8 + 9];
@@ -541,7 +627,7 @@ static int dec_file(const char *xpk)
 			enc_buf[j + k] ^= _key3[k];
 	}
 	for (int k = 0; k <= 7; ++k)
-		enc_buf[k] ^= zip_head[k];
+		enc_buf[k] = zip_head[k];
 
 
 	unsigned long uzip_len = src_len;
