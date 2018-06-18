@@ -8,6 +8,7 @@
 #include <unordered_map>
 
 #include <zlib.h>
+#include <tpl.h>
 
 static uint8_t s_table1[256] = {0};
 static uint8_t s_dec_table1[256] = { 0 };
@@ -533,6 +534,19 @@ static int dec_file(const char *xpk)
 		return 1;
 	}
 
+	std::cout << "uzip_len=" << uzip_len << std::endl;
+	char* fmt = tpl_peek(TPL_MEM, uzip_buf, uzip_len);
+	std::cout << "fmt=" << fmt << std::endl;
 
+	tpl_node *tn;
+	int b_n = 0;
+	tpl_bin tb;
+	int s_n = 0;
+	char* s;
+	tn = tpl_map("A(iBis)", &b_n, &tb, &s_n, &s);
+	tpl_load(tn, TPL_MEM, uzip_buf, uzip_len);
+	tpl_unpack(tn, 1);
+	std::cout << "b_n=" << b_n << ", s_n=" << s_n << ", s=" << s << std::endl;
+	tpl_free(tn);
 	return 0;
 }

@@ -48,11 +48,13 @@ if(WIN32)
 target_link_libraries(xs
     lua
     libzlib
+	tpl
 )
 else()
 target_link_libraries(xs
     lua
 	z
+	tpl
 )
 endif()
 
