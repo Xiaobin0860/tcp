@@ -39,6 +39,7 @@ static int dec_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
 static void gen_confuse(char *confuse, int len);
 static int enc_file(const char *src_path, const char *xpk_path, const char *null_path);
 static int dec_file(const char *xpk);
+static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len);
 
 int main(int argc, char* argv[])
 {
@@ -466,6 +467,25 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
     free(final_buf);
     return 0;
 }
+static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len)
+{
+	int lua_obj_i = 0;
+	int index = 0;
+	int v9;
+	while (lua_obj_len != lua_obj_i)
+	{
+		if (index < key_len)
+		{
+			v9 = index++;
+		}
+		else
+		{
+			index = 0;
+			v9 = 0;
+		}
+		compiled_data_buf[lua_obj_i++] ^= key[v9];
+	}
+}
 
 static int dec_file(const char *xpk)
 {
@@ -547,6 +567,13 @@ static int dec_file(const char *xpk)
 	tpl_load(tn, TPL_MEM, uzip_buf, uzip_len);
 	tpl_unpack(tn, 1);
 	std::cout << "b_n=" << b_n << ", s_n=" << s_n << ", s=" << s << std::endl;
+
+	//local s=string.dump(loadfile(\"%s\"), false); return s
+	std::string enc_str((char*)tb.addr, tb.sz);
 	tpl_free(tn);
+
+	char* enc = (char*)enc_str.c_str();
+	enc_lua_obj(enc, (int)enc_str.size(), s_key1, strlen(s_key1));
+
 	return 0;
 }
