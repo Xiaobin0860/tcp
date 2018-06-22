@@ -21,7 +21,10 @@ static const char* s_confuse_str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh
 static const int s_confuse_str_len = strlen(s_confuse_str);
 static const char* s_key1 = "93e6dc0011a725a8025207efff74c3d3";
 static const char* s_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
+static const char* s_v3_key1 = "16194ae0f6ad88da4675e1b130b4d162";
+static const char* s_v3_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
 static uint8_t s_key5[] = { 0x22, 0x10, 0x19, 0x64, 0x10, 0x19, 0x64, 0x22, 0x19, 0x64, 0x22, 0x10, 0x64, 0x22, 0x10, 0x19, 0x00 };
+static uint8_t s_v3_key5[] = { 0x64, 0x22, 0x19, 0x22, 0x10, 0x19, 0x64, 0x22, 0x10, 0x64, 0x10, 0x19, 0x64, 0x22, 0x10, 0x19 };
 static std::unordered_map<uint32_t, uint32_t> s_enc_map;
 
 static void init_xs();
@@ -133,7 +136,7 @@ int main(int argc, char* argv[])
 
     enc_file(0, 0, 0);
 
-    dec_file("x");
+    dec_file("jj");
 
     deinit_xs();
     return 0;
@@ -609,16 +612,20 @@ static int dec_file(const char *xpk)
 		return 1;
 	}
 
+
+    //v2 0x09, v3 0x11
+    int offset = strcspn(s_v3_key2, "f") + strcspn(s_key2, "9") + strcspn(s_key2, "3") + strcspn(s_key2, "2") + 2 - strcspn(s_key2, "6");
+
 	char _key3[8] = { 0 };
 	for (int i = 0; i <= 7; ++i)
-		_key3[i] = zip_head[i] ^ s_key2[i + 8 + 9];
+		_key3[i] = zip_head[i] ^ s_v3_key2[i + offset];
 	char _key4[264] = { 0 };
 	for (int j = 0; j <= 255; j += 8)
 	{
 		for (int k = 0; k <= 7 && j + k <= 255; ++k)
 			_key4[j + k] = _key3[k] ^ confuse[j + k];
 	}
-	dec_xx(enc_buf, len, _key4, 256, s_key5);
+	dec_xx(enc_buf, len, _key4, 256, s_v3_key5);
 
 
 	for (int j = 8; j < len; j += 8)
@@ -656,10 +663,11 @@ static int dec_file(const char *xpk)
 
 	//local s=string.dump(loadfile(\"%s\"), false); return s
 	std::string enc_str((char*)tb.addr, tb.sz);
+    std::string key(s, s_n);
 	tpl_free(tn);
 
 	char* enc = (char*)enc_str.c_str();
-	enc_lua_obj(enc, (int)enc_str.size(), s_key1, strlen(s_key1));
+	enc_lua_obj(enc, (int)enc_str.size(), key.c_str(), key.size());
 
 	return 0;
 }

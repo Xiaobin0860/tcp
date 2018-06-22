@@ -1,6 +1,6 @@
 
 #include "../Base/GeneralClient.h"
-#include "../Base/GeneralServer.h"
+#include <iostream>
 
 using namespace Base;
 
@@ -18,10 +18,12 @@ protected:
     virtual void ProcessPacket(const ConnectionPtr& conn, const uint8_t* data, uint32_t len) override
     {
         std::string msg((char*)data, len);
+        std::cout << "ProcessPacket, recv " << msg << std::endl;
         ++_msg_count;
         if (_msg_count > 10)
         {
             std::string hello("Close");
+            std::cout << "ProcessPacket, send " << hello << std::endl;
             SendPacket((uint8_t*)hello.c_str(), hello.size());
             _hive->Post([this] {
                 Stop();
@@ -30,16 +32,19 @@ protected:
         else
         {
             std::string hello("Hello");
+            std::cout << "ProcessPacket, send " << hello << std::endl;
             SendPacket((uint8_t*)hello.c_str(), hello.size());
         }
     }
     virtual void OnConnect(const ConnectionPtr conn) override
     {
         std::string msg("Hello");
+        std::cout << "OnConnect " << conn->GetId() << ", send " << msg << std::endl;
         SendPacket((uint8_t*)msg.c_str(), msg.size());
     }
     virtual void OnDisconnect(const ConnectionPtr conn) override
     {
+        std::cout << "OnDisconnect " << conn->GetId() << std::endl;
     }
     
 private:
