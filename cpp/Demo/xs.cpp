@@ -11,7 +11,7 @@
 #include <zlib.h>
 #include <tpl.h>
 
-static uint8_t s_table1[256] = {0};
+static uint8_t s_table1[256] = { 0 };
 static uint8_t s_dec_table1[256] = { 0 };
 static uint8_t s_table3[256] = { 0 };
 static uint8_t s_index2[256] = { 0 };
@@ -47,96 +47,96 @@ static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* ke
 
 static void zlib_compress_test()
 {
-	const char* s1 = "1";
-	int len = strlen(s1);
-	auto zip_len = compressBound(len);
-	uint8_t* zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
-	
-	s1 = "12";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    const char* s1 = "1";
+    int len = strlen(s1);
+    auto zip_len = compressBound(len);
+    uint8_t* zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "123";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "12";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "1234";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "123";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "12345";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "1234";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "123456";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "12345";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "1234567";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "123456";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "12345678";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "1234567";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "11";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "12345678";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 
-	s1 = "112";
-	len = strlen(s1);
-	zip_len = compressBound(len);
-	zip_buff = (uint8_t*)malloc(zip_len);
-	compress(zip_buff, &zip_len, (uint8_t*)s1, len);
-	printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
-	free(zip_buff);
+    s1 = "11";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
+
+    s1 = "112";
+    len = strlen(s1);
+    zip_len = compressBound(len);
+    zip_buff = (uint8_t*)malloc(zip_len);
+    compress(zip_buff, &zip_len, (uint8_t*)s1, len);
+    printf("%02x%02x%02x%02x%02x%02x%02x%02x, zip_len=%d\n", zip_buff[0], zip_buff[1], zip_buff[2], zip_buff[3], zip_buff[4], zip_buff[5], zip_buff[6], zip_buff[7], zip_len);
+    free(zip_buff);
 }
 
 int main(int argc, char* argv[])
 {
-	zlib_compress_test();
+    zlib_compress_test();
 
     init_xs();
 
     enc_file(0, 0, 0);
 
-    dec_file("jj");
+    dec_file("w22");
 
     deinit_xs();
     return 0;
@@ -156,7 +156,7 @@ static void init_xs()
     }
     std::cout << "c" << (char)s_dec_table1[s_table1['c']] << " d" << (char)s_dec_table1[s_table1['d']]
         << " e" << (char)s_dec_table1[s_table1['e']] << " f" << (char)s_dec_table1[s_table1['f']] << std::endl;
-    
+
     fin = fopen("t3", "rb");
     fseek(fin, 0, SEEK_END);
     len = ftell(fin);
@@ -171,19 +171,19 @@ static void init_xs()
     fread(s_index2, 1, len, fin);
     fclose(fin);
 
-	fin = fopen("i4", "rb");
-	fseek(fin, 0, SEEK_END);
-	len = ftell(fin);
-	fseek(fin, 0, SEEK_SET);
-	fread(s_index4, 1, len, fin);
-	fclose(fin);
+    fin = fopen("i4", "rb");
+    fseek(fin, 0, SEEK_END);
+    len = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    fread(s_index4, 1, len, fin);
+    fclose(fin);
 
-	fin = fopen("i8", "rb");
-	fseek(fin, 0, SEEK_END);
-	len = ftell(fin);
-	fseek(fin, 0, SEEK_SET);
-	fread(s_index8, 1, len, fin);
-	fclose(fin);
+    fin = fopen("i8", "rb");
+    fseek(fin, 0, SEEK_END);
+    len = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    fread(s_index8, 1, len, fin);
+    fclose(fin);
 }
 static void deinit_xs()
 {
@@ -191,7 +191,7 @@ static void deinit_xs()
 static uint8_t * xun_huan_zuo_yi(uint8_t *a1)
 {
     uint8_t v1; // ST0F_1
-    
+
     v1 = *a1;
     *a1 = a1[1];
     a1[1] = a1[2];
@@ -214,21 +214,21 @@ static void gen_key6(uint8_t *key4, uint8_t *key6, int param_value8)
     int value_60; // [esp+24h] [ebp-14h]
     int v8; // [esp+28h] [ebp-10h]
     int value_8_59; // [esp+2Ch] [ebp-Ch]
-    
+
     value_60 = 4 * (param_value8 + 7);
     value_8_59 = 0;
     v8 = 0;
-    while ( value_8_59 < param_value8 )
+    while (value_8_59 < param_value8)
     {
         memcpy(&key6[4 * value_8_59++], &key4[v8], 4u);
         v8 += 4;
     }
-    while ( value_8_59 < value_60 )               // v9 [8, 59]
+    while (value_8_59 < value_60)               // v9 [8, 59]
     {
         *(int *)v4 = *(int *)&key6[4 * (value_8_59 - 1)];
-        if ( value_8_59 % param_value8 )
+        if (value_8_59 % param_value8)
         {
-            if ( param_value8 > 6 && value_8_59 % param_value8 == 4 )
+            if (param_value8 > 6 && value_8_59 % param_value8 == 4)
                 from_table1(v4);
         }
         else
@@ -285,31 +285,31 @@ static void gen_key7_2(uint8_t *key7)
 }
 static void revert_gen_key7_2(uint8_t *key7)
 {
-	uint8_t v1; // ST0F_1
-	uint8_t v2; // ST0F_1
-	uint8_t v3; // ST0E_1
-	uint8_t v4; // ST0F_1
+    uint8_t v1; // ST0F_1
+    uint8_t v2; // ST0F_1
+    uint8_t v3; // ST0E_1
+    uint8_t v4; // ST0F_1
 
-	key7[0] = s_dec_table1[key7[0]];
-	key7[4] = s_dec_table1[key7[4]];
-	key7[8] = s_dec_table1[key7[8]];
-	key7[12] = s_dec_table1[key7[12]];
-	v1 = s_dec_table1[key7[1]];
-	key7[1] = s_dec_table1[key7[13]];
-	key7[13] = s_dec_table1[key7[9]];
-	key7[9] = s_dec_table1[key7[5]];
-	key7[5] = v1;
-	v2 = s_dec_table1[key7[6]];
-	v3 = s_dec_table1[key7[2]];
-	key7[2] = s_dec_table1[key7[10]];
-	key7[6] = s_dec_table1[key7[14]];
-	key7[10] = v3;
-	key7[14] = v2;
-	v4 = s_dec_table1[key7[7]];
-	key7[7] = s_dec_table1[key7[11]];
-	key7[11] = s_dec_table1[key7[15]];
-	key7[15] = s_dec_table1[key7[3]];
-	key7[3] = v4;
+    key7[0] = s_dec_table1[key7[0]];
+    key7[4] = s_dec_table1[key7[4]];
+    key7[8] = s_dec_table1[key7[8]];
+    key7[12] = s_dec_table1[key7[12]];
+    v1 = s_dec_table1[key7[1]];
+    key7[1] = s_dec_table1[key7[13]];
+    key7[13] = s_dec_table1[key7[9]];
+    key7[9] = s_dec_table1[key7[5]];
+    key7[5] = v1;
+    v2 = s_dec_table1[key7[6]];
+    v3 = s_dec_table1[key7[2]];
+    key7[2] = s_dec_table1[key7[10]];
+    key7[6] = s_dec_table1[key7[14]];
+    key7[10] = v3;
+    key7[14] = v2;
+    v4 = s_dec_table1[key7[7]];
+    key7[7] = s_dec_table1[key7[11]];
+    key7[11] = s_dec_table1[key7[15]];
+    key7[15] = s_dec_table1[key7[3]];
+    key7[3] = v4;
 }
 static void gen_key7_3(uint8_t *key7)
 {
@@ -329,29 +329,29 @@ static void gen_key7_3(uint8_t *key7)
 }
 static void revert_gen_key7_3(uint8_t *key7)
 {
-	for (int i = 0; i <= 3; ++i)
-	{
-		uint8_t * v1 = &key7[4 * i];
-		uint8_t b0 = v1[0];
-		uint8_t b1 = v1[1];
-		uint8_t b2 = v1[2];
-		uint8_t b3 = v1[3];
-		uint8_t v2 = b0 ^ b3;
-		uint8_t v3 = b1 ^ b2;
-		uint8_t v4 = s_index8[v3 ^ v2] ^ v3 ^ v2;
-		uint8_t v5 = v4 ^ s_index4[b0 ^ b2];
-		uint8_t v6 = s_index4[b1 ^ b3] ^ v4;
-		v1[0] ^= v5 ^ s_index2[b0 ^ b1];
-		v1[1] ^= v6 ^ s_index2[b1 ^ b2];
-		v1[2] ^= v5 ^ s_index2[b2 ^ b3];
-		v1[3] ^= v6 ^ s_index2[b0 ^ b3];
-	}
+    for (int i = 0; i <= 3; ++i)
+    {
+        uint8_t * v1 = &key7[4 * i];
+        uint8_t b0 = v1[0];
+        uint8_t b1 = v1[1];
+        uint8_t b2 = v1[2];
+        uint8_t b3 = v1[3];
+        uint8_t v2 = b0 ^ b3;
+        uint8_t v3 = b1 ^ b2;
+        uint8_t v4 = s_index8[v3 ^ v2] ^ v3 ^ v2;
+        uint8_t v5 = v4 ^ s_index4[b0 ^ b2];
+        uint8_t v6 = s_index4[b1 ^ b3] ^ v4;
+        v1[0] ^= v5 ^ s_index2[b0 ^ b1];
+        v1[1] ^= v6 ^ s_index2[b1 ^ b2];
+        v1[2] ^= v5 ^ s_index2[b2 ^ b3];
+        v1[3] ^= v6 ^ s_index2[b0 ^ b3];
+    }
 }
 
 static void enc_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 {
     std::cout << "buff=0x" << (void*)buff << ", line=0x" << (void*)line << std::endl;
-    uint8_t key7[16] = {0}; // [esp+Ch] [ebp-20h]
+    uint8_t key7[16] = { 0 }; // [esp+Ch] [ebp-20h]
     int i; // [esp+24h] [ebp-8h]
     int k; // [esp+28h] [ebp-4h]
 
@@ -378,29 +378,29 @@ static void enc_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 }
 static void dec_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 {
-	uint8_t key7[16] = {0}; // [esp+Ch] [ebp-20h]
-	int i; // [esp+24h] [ebp-8h]
-	int k; // [esp+28h] [ebp-4h]
+    uint8_t key7[16] = { 0 }; // [esp+Ch] [ebp-20h]
+    int i; // [esp+24h] [ebp-8h]
+    int k; // [esp+28h] [ebp-4h]
 
-	for (i = 0; i < 16; ++i)
-	{
-		key7[i] = buff[i];
-	}
+    for (i = 0; i < 16; ++i)
+    {
+        key7[i] = buff[i];
+    }
 
-	gen_key7_1(key7, key6, ll);
-	for (k = ll - 1; k > 0; --k)
-	{
-		revert_gen_key7_2(key7);
-		gen_key7_1(key7, key6, k);
-		revert_gen_key7_3(key7);
-	}
-	revert_gen_key7_2(key7);
-	gen_key7_1(key7, key6, 0);
+    gen_key7_1(key7, key6, ll);
+    for (k = ll - 1; k > 0; --k)
+    {
+        revert_gen_key7_2(key7);
+        gen_key7_1(key7, key6, k);
+        revert_gen_key7_3(key7);
+    }
+    revert_gen_key7_2(key7);
+    gen_key7_1(key7, key6, 0);
 
-	for (i = 0; i < 16; ++i)
-	{
-		line[i] = key7[i];
-	}
+    for (i = 0; i < 16; ++i)
+    {
+        line[i] = key7[i];
+    }
 }
 static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
 {
@@ -408,7 +408,7 @@ static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
     unsigned int v5; // eax
     int v7; // eax
     int _key5[4]; // [esp+18h] [ebp-220h]
-    uint8_t copy_key4[512] = {0}; // [esp+28h] [ebp-210h]
+    uint8_t copy_key4[512] = { 0 }; // [esp+28h] [ebp-210h]
     int j; // [esp+228h] [ebp-10h]
     int i; // [esp+22Ch] [ebp-Ch]
 
@@ -428,7 +428,7 @@ static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
     if (key4len <= 32)
         v7 = key4len;
     memcpy(copy_key4, key4, v7);
-    gen_key6(copy_key4, copy_key4+32, 8);
+    gen_key6(copy_key4, copy_key4 + 32, 8);
     std::cout << "buf: 0x" << (void*)buf << std::endl;
     for (i = 0; i < len; i += 16)
     {
@@ -444,47 +444,47 @@ static int enc_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
 }
 static int dec_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
 {
-	int n; // eax
-	int v8; // [esp+18h] [ebp-230h]
-	int v9; // [esp+1Ch] [ebp-22Ch]
-	int v10; // [esp+20h] [ebp-228h]
-	int v11; // [esp+24h] [ebp-224h]
-	int _key5[4]; // [esp+18h] [ebp-220h]
-	uint8_t key4_20h[512] = { 0 }; // [esp+38h] [ebp-210h]
-	uint8_t key6[512] = { 0 }; // [esp+58h] [ebp-1F0h]
-	int j; // [esp+238h] [ebp-10h]
-	int i; // [esp+23Ch] [ebp-Ch]
+    int n; // eax
+    int v8; // [esp+18h] [ebp-230h]
+    int v9; // [esp+1Ch] [ebp-22Ch]
+    int v10; // [esp+20h] [ebp-228h]
+    int v11; // [esp+24h] [ebp-224h]
+    int _key5[4]; // [esp+18h] [ebp-220h]
+    uint8_t key4_20h[512] = { 0 }; // [esp+38h] [ebp-210h]
+    uint8_t key6[512] = { 0 }; // [esp+58h] [ebp-1F0h]
+    int j; // [esp+238h] [ebp-10h]
+    int i; // [esp+23Ch] [ebp-Ch]
 
-	if (!buf || !key4 || !key5)
-		return 0;
-	_key5[0] = *(int *)key5;
-	_key5[1] = *((int *)key5 + 1);
-	_key5[2] = *((int *)key5 + 2);
-	_key5[3] = *((int *)key5 + 3);
-	n = 32;
-	if (key4len <= 32)
-		n = key4len;
-	memcpy(key4_20h, key4, n);
-	gen_key6(key4_20h, key6, 8);
-	for (i = 0; i < len; i += 16)
-	{
-		v8 = *(int *)&buf[i];
-		v9 = *(int *)&buf[i + 4];
-		v10 = *(int *)&buf[i + 8];
-		v11 = *(int *)&buf[i + 12];
-		dec_line(&buf[i], &buf[i], (uint8_t *)&key6, 14);
-		for (j = 0; j <= 15; ++j)
-			buf[i + j] ^= *((uint8_t *)_key5 + j);
-		_key5[0] = v8;
-		_key5[1] = v9;
-		_key5[2] = v10;
-		_key5[3] = v11;
-	}
-	return 1;
+    if (!buf || !key4 || !key5)
+        return 0;
+    _key5[0] = *(int *)key5;
+    _key5[1] = *((int *)key5 + 1);
+    _key5[2] = *((int *)key5 + 2);
+    _key5[3] = *((int *)key5 + 3);
+    n = 32;
+    if (key4len <= 32)
+        n = key4len;
+    memcpy(key4_20h, key4, n);
+    gen_key6(key4_20h, key6, 8);
+    for (i = 0; i < len; i += 16)
+    {
+        v8 = *(int *)&buf[i];
+        v9 = *(int *)&buf[i + 4];
+        v10 = *(int *)&buf[i + 8];
+        v11 = *(int *)&buf[i + 12];
+        dec_line(&buf[i], &buf[i], (uint8_t *)&key6, 14);
+        for (j = 0; j <= 15; ++j)
+            buf[i + j] ^= *((uint8_t *)_key5 + j);
+        _key5[0] = v8;
+        _key5[1] = v9;
+        _key5[2] = v10;
+        _key5[3] = v11;
+    }
+    return 1;
 }
 static void gen_confuse(char *confuse, int len)
 {
-    char strSource[2] = {0}; // [esp+12h] [ebp-16h]
+    char strSource[2] = { 0 }; // [esp+12h] [ebp-16h]
 
     //srand(time(0));
     srand(0);
@@ -537,7 +537,7 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
             final_buf[j + k] = _key3[k] ^ ziped_new_buf[j + k];
     }
     new_len = num_bytes;
-    char _key4[264] = {0};
+    char _key4[264] = { 0 };
     for (j = 0; j <= 255; j += 8)
     {
         for (k = 0; k <= 7 && j + k <= 255; ++k)
@@ -546,7 +546,7 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
 
     std::cout << "final_buf: 0x" << (void*)final_buf << std::endl;
     enc_xx(final_buf, new_len, _key4, 256, s_key5);
-	//dec_xx(final_buf, new_len, _key4, 256, s_key5);
+    //dec_xx(final_buf, new_len, _key4, 256, s_key5);
 
     FILE* fout = fopen("z1", "wb");
     fwrite(final_buf, 1, new_len, fout);
@@ -558,38 +558,38 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
 }
 static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len)
 {
-	int lua_obj_i = 0;
-	int index = 0;
-	int v9;
-	while (lua_obj_len != lua_obj_i)
-	{
-		if (index < key_len)
-		{
-			v9 = index++;
-		}
-		else
-		{
-			index = 0;
-			v9 = 0;
-		}
-		compiled_data_buf[lua_obj_i++] ^= key[v9];
-	}
+    int lua_obj_i = 0;
+    int index = 0;
+    int v9;
+    while (lua_obj_len != lua_obj_i)
+    {
+        if (index < key_len)
+        {
+            v9 = index++;
+        }
+        else
+        {
+            index = 0;
+            v9 = 0;
+        }
+        compiled_data_buf[lua_obj_i++] ^= key[v9];
+    }
 }
 
 static int dec_file(const char *xpk)
 {
-	FILE* fin = fopen(xpk, "rb");
-	fseek(fin, 6, SEEK_SET);//sig
-	int len = 0;
-	fread(&len, 4, 1, fin);
-	len -= 0x0C;
-	std::cout << "content len=" << len << std::endl;
-	if (len <= 0)
-	{
-		fclose(fin);
-		return 1;
-	}
-	uint8_t zip_head[8] = { 0 };
+    FILE* fin = fopen(xpk, "rb");
+    fseek(fin, 6, SEEK_SET);//sig
+    int len = 0;
+    fread(&len, 4, 1, fin);
+    len -= 0x0C;
+    std::cout << "content len=" << len << std::endl;
+    if (len <= 0)
+    {
+        fclose(fin);
+        return 1;
+    }
+    uint8_t zip_head[8] = { 0 };
     fread(zip_head, 8, 1, fin);
     char confuse[257] = { 0 };
     uint8_t* enc_buf = (uint8_t*)malloc(len);
@@ -601,73 +601,74 @@ static int dec_file(const char *xpk)
         }
         fread(enc_buf + i, 1, 1, fin);
     }
-	int src_len = 0;
-	fread(&src_len, 4, 1, fin);
-	std::cout << "src_len=" << src_len << std::endl;
+    int src_len = 0;
+    fread(&src_len, 4, 1, fin);
+    std::cout << "src_len=" << src_len << std::endl;
     std::cout << "confuse: " << confuse << std::endl;
     fclose(fin);
-	if (src_len <= 0)
-	{
-		free(enc_buf);
-		return 1;
-	}
+    if (src_len <= 0)
+    {
+        free(enc_buf);
+        return 1;
+    }
+
+    //int offset = strcspn(s_v3_key2, "f") + strcspn(s_key2, "9") + strcspn(s_key2, "3") + strcspn(s_key2, "2") + 2 - strcspn(s_key2, "6");
+    int offset = 0x11;
+
+    char _key3[8] = { 0 };
+    for (int i = 0; i <= 7; ++i)
+        _key3[i] = zip_head[i] ^ s_key2[i + offset];
+        //_key3[i] = zip_head[i] ^ s_v3_key2[i + offset];
+    char _key4[264] = { 0 };
+    for (int j = 0; j <= 255; j += 8)
+    {
+        for (int k = 0; k <= 7 && j + k <= 255; ++k)
+            _key4[j + k] = _key3[k] ^ confuse[j + k];
+    }
+    //dec_xx(enc_buf, len, _key4, 256, s_v3_key5);
+    dec_xx(enc_buf, len, _key4, 256, s_key5);
 
 
-    //v2 0x09, v3 0x11
-    int offset = strcspn(s_v3_key2, "f") + strcspn(s_key2, "9") + strcspn(s_key2, "3") + strcspn(s_key2, "2") + 2 - strcspn(s_key2, "6");
-
-	char _key3[8] = { 0 };
-	for (int i = 0; i <= 7; ++i)
-		_key3[i] = zip_head[i] ^ s_v3_key2[i + offset];
-	char _key4[264] = { 0 };
-	for (int j = 0; j <= 255; j += 8)
-	{
-		for (int k = 0; k <= 7 && j + k <= 255; ++k)
-			_key4[j + k] = _key3[k] ^ confuse[j + k];
-	}
-	dec_xx(enc_buf, len, _key4, 256, s_v3_key5);
+    for (int j = 8; j < len; j += 8)
+    {
+        for (int k = 0; k <= 7; ++k)
+            enc_buf[j + k] ^= _key3[k];
+    }
+    for (int k = 0; k <= 7; ++k)
+        enc_buf[k] = zip_head[k];
 
 
-	for (int j = 8; j < len; j += 8)
-	{
-		for (int k = 0; k <= 7; ++k)
-			enc_buf[j + k] ^= _key3[k];
-	}
-	for (int k = 0; k <= 7; ++k)
-		enc_buf[k] = zip_head[k];
+    unsigned long uzip_len = src_len;
+    uint8_t* uzip_buf = (uint8_t*)malloc(src_len);
+    int uzip_ret = uncompress(uzip_buf, &uzip_len, enc_buf, len);
+    free(enc_buf);
+    if (uzip_ret != Z_OK)
+    {
+        std::cerr << "unzip error " << uzip_ret << std::endl;
+        return 1;
+    }
 
+    std::cout << "uzip_len=" << uzip_len << std::endl;
+    char* fmt = tpl_peek(TPL_MEM, uzip_buf, uzip_len);
+    std::cout << "fmt=" << fmt << std::endl;
 
-	unsigned long uzip_len = src_len;
-	uint8_t* uzip_buf = (uint8_t*)malloc(src_len);
-	int uzip_ret = uncompress(uzip_buf, &uzip_len, enc_buf, len);
-	free(enc_buf);
-	if (uzip_ret != Z_OK)
-	{
-		std::cerr << "unzip error " << uzip_ret << std::endl;
-		return 1;
-	}
+    tpl_node *tn;
+    int b_n = 0;
+    tpl_bin tb;
+    int s_n = 0;
+    char* s;
+    tn = tpl_map("A(iBis)", &b_n, &tb, &s_n, &s);
+    tpl_load(tn, TPL_MEM, uzip_buf, uzip_len);
+    tpl_unpack(tn, 1);
+    std::cout << "b_n=" << b_n << ", s_n=" << s_n << ", s=" << s << std::endl;
 
-	std::cout << "uzip_len=" << uzip_len << std::endl;
-	char* fmt = tpl_peek(TPL_MEM, uzip_buf, uzip_len);
-	std::cout << "fmt=" << fmt << std::endl;
-
-	tpl_node *tn;
-	int b_n = 0;
-	tpl_bin tb;
-	int s_n = 0;
-	char* s;
-	tn = tpl_map("A(iBis)", &b_n, &tb, &s_n, &s);
-	tpl_load(tn, TPL_MEM, uzip_buf, uzip_len);
-	tpl_unpack(tn, 1);
-	std::cout << "b_n=" << b_n << ", s_n=" << s_n << ", s=" << s << std::endl;
-
-	//local s=string.dump(loadfile(\"%s\"), false); return s
-	std::string enc_str((char*)tb.addr, tb.sz);
+    //local s=string.dump(loadfile(\"%s\"), false); return s
+    std::string enc_str((char*)tb.addr, tb.sz);
     std::string key(s, s_n);
-	tpl_free(tn);
+    tpl_free(tn);
 
-	char* enc = (char*)enc_str.c_str();
-	enc_lua_obj(enc, (int)enc_str.size(), key.c_str(), key.size());
+    char* enc = (char*)enc_str.c_str();
+    enc_lua_obj(enc, (int)enc_str.size(), key.c_str(), key.size());
 
-	return 0;
+    return 0;
 }
