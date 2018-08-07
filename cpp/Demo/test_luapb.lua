@@ -2,7 +2,7 @@ local pb = require("pb")
 print("pb", pb)
 
 print(g_hello)
-print("g_s size: ", #g_s)
+print("lua g_s size: ", #g_s)
 
 pb.Import("addressbook.proto")
 local ab = pb.New("tutorial.AddressBook")

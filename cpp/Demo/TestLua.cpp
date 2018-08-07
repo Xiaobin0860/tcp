@@ -18,7 +18,21 @@
 
 using MemBuf = apache::thrift::transport::TMemoryBuffer;
 using BinProto = apache::thrift::protocol::TBinaryProtocol;
-
+template<typename T>
+std::string SerializeAsString(const T& t)
+{
+    auto mt = std::make_shared<MemBuf>();
+    BinProto bp(mt);
+    t.write(&bp);
+    return mt->getBufferAsString();
+}
+template<typename T>
+void ParseFromString(T& t, const std::string& s)
+{
+    auto mt = std::make_shared<MemBuf>((uint8_t*)s.c_str(), s.size());
+    BinProto bp(mt);
+    t.read(&bp);
+}
 
 using namespace Base;
 class GameClient : public GeneralClient
@@ -136,40 +150,44 @@ TEST(THRIFT, thrift)
     {
         Demo::Work work;
         work.key = std::to_string(i);
-        work.comment = "comment" + work.key;
+        work.__set_comment(std::string("comment") + work.key);
         work.type = Demo::Type::MULTIPLY;
         work.num1 = INT_MAX;
         work.num2 = UINT_MAX + 1;
         works.push_back(work);
     }
-    Demo::Worker worker;
-    worker.__set_works(works);
-    worker.result = 3.1415926;
+    Demo::Worker worker1;
+    worker1.__set_works(works);
+    worker1.result = 3.1415926;
 
     Demo::Work work;
     work.key = "key";
-    work.comment = "comment" + work.key;
+    work.__set_comment(std::string("comment") + work.key);
     work.type = Demo::Type::DIVIDE;
     work.num1 = INT_MAX;
     work.num2 = UINT_MAX + 1;
-    worker.work_map[work.key] = work;
-    auto mt = std::make_shared<MemBuf>(4);
-    BinProto bp(mt);
-    worker.write(&bp);
+    worker1.work_map[work.key] = work;
+
     std::ostringstream os;
-    os << worker;
-    std::cout << "worker: " << os.str() << std::endl;
-    auto s = mt->getBufferAsString();
-    std::cout << "worker string size: " << s.size() << std::endl;
-    {
-        auto mt = std::make_shared<MemBuf>((uint8_t*)s.c_str(), s.size());
-        BinProto bp(mt);
-        Demo::Worker worker;
-        worker.read(&bp);
-        std::ostringstream os;
-        os << worker;
-        std::cout << "worker: " << os.str() << std::endl;
-    }
+    os << worker1;
+    std::cout << "worker: " << os.str() << ", size=" << os.str().size() << std::endl;
+    auto s = SerializeAsString(worker1);
+    std::cout << "worker string size: " << s.size() << "s=" << s << std::endl;
+
+    Demo::Worker worker2;
+    ParseFromString(worker2, s);
+    std::ostringstream os2;
+    os2 << worker2;
+    std::cout << "worker2: " << os2.str() << std::endl;
+
+    ASSERT_EQ(worker1.result, worker2.result);
+    ASSERT_EQ(worker1.works.size(), worker2.works.size());
+    ASSERT_EQ(worker1.works[0].key, worker2.works[0].key);
+    ASSERT_EQ(worker1.works[1].comment, worker2.works[1].comment);
+    ASSERT_EQ(worker1.works[2].num1, worker2.works[2].num1);
+    ASSERT_EQ(worker1.works[3].type, worker2.works[3].type);
+    ASSERT_EQ(worker1.work_map["key"].num2, worker2.work_map["key"].num2);
+    ASSERT_EQ(worker1.work_map["key"], worker2.work_map["key"]);
 }
 
 void unzip()
@@ -336,6 +354,8 @@ int main(int argc, char* argv[])
     //std::ifstream f("addressbook.pb", std::ios_base::binary| std::ios_base::in);
     //fds.ParseFromIstream(&f);
     //std::cout << "fds: " << fds.DebugString() << std::endl;
+
+    ret = RUN_ALL_TESTS();
 
 #if WIN32
     getchar();

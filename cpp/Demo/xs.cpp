@@ -20,9 +20,9 @@ static uint8_t s_index8[256] = { 0 };
 static const char* s_confuse_str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,./;\"'<>?";
 static const int s_confuse_str_len = strlen(s_confuse_str);
 static const char* s_key1 = "93e6dc0011a725a8025207efff74c3d3";
-static const char* s_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
+static char* s_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
 static const char* s_v3_key1 = "16194ae0f6ad88da4675e1b130b4d162";
-static const char* s_v3_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
+static char* s_v3_key2 = "c2ba218a99bc034bdff2e4126a974b8c";
 static uint8_t s_key5[] = { 0x22, 0x10, 0x19, 0x64, 0x10, 0x19, 0x64, 0x22, 0x19, 0x64, 0x22, 0x10, 0x64, 0x22, 0x10, 0x19, 0x00 };
 static uint8_t s_v3_key5[] = { 0x64, 0x22, 0x19, 0x22, 0x10, 0x19, 0x64, 0x22, 0x10, 0x64, 0x10, 0x19, 0x64, 0x22, 0x10, 0x19 };
 static std::unordered_map<uint32_t, uint32_t> s_enc_map;
@@ -43,7 +43,7 @@ static int dec_xx(uint8_t *buf, int len, char *key4, int key4len, uint8_t *key5)
 static void gen_confuse(char *confuse, int len);
 static int enc_file(const char *src_path, const char *xpk_path, const char *null_path);
 static int dec_file(const char *xpk);
-static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len);
+static void enc_lua_obj2(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len);
 
 static void zlib_compress_test()
 {
@@ -130,13 +130,13 @@ static void zlib_compress_test()
 
 int main(int argc, char* argv[])
 {
-    zlib_compress_test();
+    //zlib_compress_test();
 
     init_xs();
 
     enc_file(0, 0, 0);
 
-    dec_file("w22");
+    dec_file("jj");
 
     deinit_xs();
     return 0;
@@ -350,7 +350,7 @@ static void revert_gen_key7_3(uint8_t *key7)
 
 static void enc_line(uint8_t *buff, uint8_t *line, uint8_t *key6, int ll)
 {
-    std::cout << "buff=0x" << (void*)buff << ", line=0x" << (void*)line << std::endl;
+    //std::cout << "buff=0x" << (void*)buff << ", line=0x" << (void*)line << std::endl;
     uint8_t key7[16] = { 0 }; // [esp+Ch] [ebp-20h]
     int i; // [esp+24h] [ebp-8h]
     int k; // [esp+28h] [ebp-4h]
@@ -556,7 +556,7 @@ static int enc_file(const char *src_path, const char *xpk_path, const char *prop
     free(final_buf);
     return 0;
 }
-static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len)
+static void enc_lua_obj2(char* compiled_data_buf, int lua_obj_len, const char* key, int key_len)
 {
     int lua_obj_i = 0;
     int index = 0;
@@ -579,11 +579,14 @@ static void enc_lua_obj(char* compiled_data_buf, int lua_obj_len, const char* ke
 static int dec_file(const char *xpk)
 {
     FILE* fin = fopen(xpk, "rb");
-    fseek(fin, 6, SEEK_SET);//sig
+    char sig[3] = { 0 };
+    fread(sig, 1, 3, fin); //XPK
+    char ver[3] = { 0 };
+    fread(ver, 1, 3, fin); //XPK
     int len = 0;
     fread(&len, 4, 1, fin);
     len -= 0x0C;
-    std::cout << "content len=" << len << std::endl;
+    std::cout << "sig=" << sig << ", ver=" << (int)ver[0] << ", content len=" << len << std::endl;
     if (len <= 0)
     {
         fclose(fin);
@@ -615,18 +618,24 @@ static int dec_file(const char *xpk)
     //int offset = strcspn(s_v3_key2, "f") + strcspn(s_key2, "9") + strcspn(s_key2, "3") + strcspn(s_key2, "2") + 2 - strcspn(s_key2, "6");
     int offset = 0x11;
 
+    char* key2 = s_key2;
+    uint8_t* key5 = s_key5;
+    if (ver[0] == 3)
+    {
+        key2 = s_v3_key2;
+        key5 = s_v3_key5;
+    }
+
     char _key3[8] = { 0 };
     for (int i = 0; i <= 7; ++i)
-        _key3[i] = zip_head[i] ^ s_key2[i + offset];
-        //_key3[i] = zip_head[i] ^ s_v3_key2[i + offset];
+        _key3[i] = zip_head[i] ^ key2[i + offset];
     char _key4[264] = { 0 };
     for (int j = 0; j <= 255; j += 8)
     {
         for (int k = 0; k <= 7 && j + k <= 255; ++k)
             _key4[j + k] = _key3[k] ^ confuse[j + k];
     }
-    //dec_xx(enc_buf, len, _key4, 256, s_v3_key5);
-    dec_xx(enc_buf, len, _key4, 256, s_key5);
+    dec_xx(enc_buf, len, _key4, 256, key5);
 
 
     for (int j = 8; j < len; j += 8)
@@ -668,7 +677,14 @@ static int dec_file(const char *xpk)
     tpl_free(tn);
 
     char* enc = (char*)enc_str.c_str();
-    enc_lua_obj(enc, (int)enc_str.size(), key.c_str(), key.size());
+    if (ver[0] == 3)
+    {
+
+    }
+    else
+    {
+        enc_lua_obj2(enc, (int)enc_str.size(), key.c_str(), key.size());
+    }
 
     return 0;
 }
