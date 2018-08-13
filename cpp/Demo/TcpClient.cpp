@@ -1,14 +1,15 @@
-
-#include "../Base/GeneralClient.h"
 #include <iostream>
+#include <boost/program_options.hpp>
+#include "../Base/GeneralClient.h"
 
+namespace po = boost::program_options;
 using namespace Base;
 
 class MyClient : public GeneralClient
 {
 public:
-    MyClient() : GeneralClient() {
-        Connect("127.0.0.1", "11112");
+    MyClient(const std::string& host, const std::string& port) : GeneralClient() {
+        Connect(host, port);
     }
     ~MyClient()
     {
@@ -53,7 +54,24 @@ private:
 
 int main(int argc, char* argv[])
 {
-    MyClient c;
+    std::string host;
+    std::string port;
+    po::options_description opts;
+    opts.add_options()
+        ("help", "produce help message")
+        ("ip", po::value<std::string>(&host)->default_value("127.0.0.1"), "server ip")
+        ("port", po::value<std::string>(&port)->default_value("11111"), "server port")
+        ;
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, opts), vm);
+    po::notify(vm);
+
+    if (vm.count("help")) {
+        std::cout << opts << std::endl;
+        return 1;
+    }
+
+    MyClient c(host, port);
     auto stop = [&c]() {
         c.Stop();
     };
