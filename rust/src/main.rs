@@ -1,13 +1,13 @@
+use structopt::StructOpt;
 use tokio::io::copy;
 use tokio::net::TcpListener;
 use tokio::prelude::*;
-use structopt::StructOpt;
 
 /// A basic example
 #[derive(StructOpt, Debug)]
 #[structopt(name = "EchoServer")]
 struct Opt {
-    #[structopt(short, long)]
+    #[structopt(short, long, default_value = "0.0.0.0:11111")]
     addr: String,
 }
 
