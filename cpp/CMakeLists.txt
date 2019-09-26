@@ -29,13 +29,13 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/3rd/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Base
     ${CMAKE_CURRENT_SOURCE_DIR}/Demo
-    C:/boost_1_67_0
+    F:/tools/boost_1_69_0
 )
 
 # lib dirs
 link_directories(
     ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
-    C:/boost_1_67_0/stage/lib
+    F:/tools/boost_1_69_0/stage/lib
     ${CMAKE_CURRENT_SOURCE_DIR}/3rd/prebuilt/zlib/win
 )
 add_definitions(

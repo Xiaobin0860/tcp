@@ -1,10 +1,20 @@
 use tokio::io::copy;
 use tokio::net::TcpListener;
 use tokio::prelude::*;
+use structopt::StructOpt;
+
+/// A basic example
+#[derive(StructOpt, Debug)]
+#[structopt(name = "EchoServer")]
+struct Opt {
+    #[structopt(short, long)]
+    addr: String,
+}
 
 fn main() {
+    let opt = Opt::from_args();
     // Bind the server's socket.
-    let addr = "0.0.0.0:12345".parse().unwrap();
+    let addr = opt.addr.parse().expect("addr format error! ip:port");
     let listener = TcpListener::bind(&addr).expect("unable to bind TCP listener");
 
     // Pull out a stream of sockets for incoming connections
