@@ -1,7 +1,6 @@
 use structopt::StructOpt;
-use tokio::io::copy;
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpListener;
-use tokio::prelude::*;
 
 /// A basic example
 #[derive(StructOpt, Debug)]
@@ -11,34 +10,35 @@ struct Opt {
     addr: String,
 }
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opt = Opt::from_args();
-    // Bind the server's socket.
-    let addr = opt.addr.parse().expect("addr format error! ip:port");
-    let listener = TcpListener::bind(&addr).expect("unable to bind TCP listener");
+    let listener = TcpListener::bind(opt.addr).await?;
 
-    // Pull out a stream of sockets for incoming connections
-    let server = listener
-        .incoming()
-        .map_err(|e| eprintln!("accept failed = {:?}", e))
-        .for_each(|sock| {
-            // Split up the reading and writing parts of the
-            // socket.
-            let (reader, writer) = sock.split();
+    loop {
+        let (mut socket, _) = listener.accept().await?;
 
-            // A future that echos the data and returns how
-            // many bytes were copied...
-            let bytes_copied = copy(reader, writer);
+        tokio::spawn(async move {
+            let mut buf = [0; 1024];
 
-            // ... after which we'll print what happened.
-            let handle_conn = bytes_copied
-                .map(|amt| println!("wrote {:?} bytes", amt))
-                .map_err(|err| eprintln!("IO error {:?}", err));
+            // In a loop, read data from the socket and write the data back.
+            loop {
+                let n = match socket.read(&mut buf).await {
+                    // socket closed
+                    Ok(n) if n == 0 => return,
+                    Ok(n) => n,
+                    Err(e) => {
+                        eprintln!("failed to read from socket; err = {:?}", e);
+                        return;
+                    }
+                };
 
-            // Spawn the future as a concurrent task.
-            tokio::spawn(handle_conn)
+                // Write the data back
+                if let Err(e) = socket.write_all(&buf[0..n]).await {
+                    eprintln!("failed to write to socket; err = {:?}", e);
+                    return;
+                }
+            }
         });
-
-    // Start the Tokio runtime
-    tokio::run(server);
+    }
 }
